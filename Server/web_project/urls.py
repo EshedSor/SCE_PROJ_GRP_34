@@ -28,5 +28,5 @@ urlpatterns = [
     # landingpage
     path('landingpage/',SCE_Proj.views.LandingPage, name = "landingpage"),
     #login page
-    path('landingpage/',SCE_Proj.views.LogIn,name = "login")
+    path('LogIn/',SCE_Proj.views.LogIn,name = "LogIn")
 ]
