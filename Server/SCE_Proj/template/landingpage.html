@@ -1,14 +1,12 @@
-{% load static %}
-
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type='text/css' href = "{% static 'css/landingpage.css' %}">
+    <link rel="stylesheet" href = "{%static '/css/landingpage.css'%}">
 </head>
 <body>
     <header class="container-fluid">
@@ -30,7 +28,11 @@
             <h1>Welcome to our blog</h1>
             <p>Here you can see recommendations and opinions of people on tourist destinations, you can comment and rate and even become one of the writers and publish posts with your experiences from trips around the world and recommendations on places people must go on their trips or even reviews of places not worth the effort or money.</p>
             <br>
-            <button ><a href="singUp.html">Log in</a></button>
+            <nav>
+            <button ><a href="logIn.html">Log in</a></button>
+            <button ><a>Register</a></button>
+            <button ><a href="continue_page.html">Continue</a></button>
+            </nav>
         </div>
         </div>
     </div>
