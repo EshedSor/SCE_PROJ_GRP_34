@@ -23,7 +23,7 @@ TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
 SECRET_KEY = 'django-insecure-j78oju9w(q3x5ct4l^2)gb0^a5k@(oe#u(mn5k0-aun^t0jefb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'web_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/',],
+        'DIRS': ['C:/Users/eshed/Desktop/SCE_Proj/Eshed/Server',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
