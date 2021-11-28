@@ -11,3 +11,9 @@ def hello(request):
       return Landingpage """
 def LandingPage(request):
    return render(request,"SCE_Proj/template/landingpage.html")
+
+"""   Eshed Sorosky 
+      28/Nov/21
+      return LogIn """
+def LogIn(request):
+   return render(request,"SCE_Proj/template/LogIn.html")
