@@ -27,4 +27,6 @@ urlpatterns = [
     path('/', SCE_Proj.views.hello, name = 'hello'),
     # landingpage
     path('landingpage/',SCE_Proj.views.LandingPage, name = "landingpage"),
+    #login page
+    path('LogIn/',SCE_Proj.views.LogIn,name = "LogIn")
 ]
