@@ -10,4 +10,4 @@ def hello(request):
       28/Nov/21
       return Landingpage """
 def LandingPage(request):
-   pass
+   return render(request,"SCE_Proj/template/landigpage.html")
