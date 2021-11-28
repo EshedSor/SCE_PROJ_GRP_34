@@ -19,6 +19,12 @@ from SCE_Proj import views
 import SCE_Proj
 
 urlpatterns = [
+    # admin console
     path('admin/', admin.site.urls),
+    # hello page
     path('hello/', SCE_Proj.views.hello, name = 'hello'),
+    # default page
+    path('/', SCE_Proj.views.hello, name = 'hello'),
+    # landingpage
+    path('landingpage/',SCE_Proj.views.LandingPage, name = "landingpage"),
 ]

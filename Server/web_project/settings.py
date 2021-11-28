@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-j78oju9w(q3x5ct4l^2)gb0^a5k@(oe#u(mn5k0-aun^t0jefb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'web_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/',],
+        'DIRS': ['C:/SCE_Proj/Server',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,10 +122,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    "C:/Users/eshed/Desktop/SCE_Proj/Eshed/Server/",
-]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/’)
+MEDIA_URL = '/media/’
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, 'static’),
+)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
