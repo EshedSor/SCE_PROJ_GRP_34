@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/html", ".html", True)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -122,13 +125,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/’)
-MEDIA_URL = '/media/’
-STATICFILES_DIRS = (
-os.path.join(BASE_DIR, 'static’),
-)
+PROJECT_DIR=os.path.dirname(__file__)
+STATIC_ROOT= os.path.join(PROJECT_DIR,'/SCE_Proj/static/')
+STATICFILES_DIRS = [
+    "C:/SCE_Proj/Server/",
+    "C:/SCE_Proj/Server/SCE_Proj/static",
+     os.path.join(STATIC_ROOT, 'static/'),
+     'C:/SCE_Proj/Server/SCE_Proj/static/css',
+     BASE_DIR / "static",
+    '/var/www/static/',
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
