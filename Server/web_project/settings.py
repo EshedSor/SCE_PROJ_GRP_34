@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SCE_Proj',
-    'dajaxice',
+    #'dajaxice',
     'dajax'
 ]
 
@@ -131,10 +131,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 STATICFILES_FINDERS = (
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-   'dajaxice.finders.DajaxiceFinder',
+   #'dajaxice.finders.DajaxiceFinder',
 )
 
-DAJAXICE_MEDIA_PREFIX = 'dajaxice'
+#DAJAXICE_MEDIA_PREFIX = 'dajaxice'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
