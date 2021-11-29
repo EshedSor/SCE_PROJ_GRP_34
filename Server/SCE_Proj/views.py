@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
+from django.template import RequestContext
+
 # Create your views here.
 from django.shortcuts import render
 
@@ -19,7 +21,9 @@ def LogIn(request):
    #added by eshed in 29/NOV/21
    username = "not logged in"
    #if data was sent to the server
-   if(request.method == "POST"):
+   if(request.method == "GET"):
+      return render(request,"SCE_Proj/template/LogIn.html")
+   elif(request.method == "POST"):
       #filling the form with the relevant data
       this_form = Login(request.POST)
    #if the credentials are correct
@@ -27,8 +31,13 @@ def LogIn(request):
       username = this_form.cleaned_data['username']
    else:
       this_form = Login()
+   response = render_to_response(request, "SCE_Proj/template/LogIn.html", 
+      context_instance = RequestContext(request))
    
-   return render(request,"SCE_Proj/template/LogIn.html")
+   response.set_cookie('last_connection', datetime.datetime.now())
+   response.set_cookie('username', datetime.datetime.now())
+	
+   return response
 """   Eshed Sorosky 
       28/Nov/21
       return LogIn """

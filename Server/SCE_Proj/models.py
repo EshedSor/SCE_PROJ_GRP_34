@@ -15,6 +15,9 @@ class User(models.Model):
     #1 to many relation for all the posts the user posted
     posts = models.ForeignKey('Post',default = 1,on_delete=models.CASCADE)
     #1 to many relation for all the comments the user made
+    comments = models.ForeignKey('Comment',default = 1,on_delete = models.CASCADE)
+    created = models.DateField(auto_now = False,auto_now_add = False)
+
     class Meta:
         db_table = "User"
 
@@ -29,6 +32,7 @@ class Post(models.Model):
     comments = models.ForeignKey('Comment',default = 1,on_delete=models.CASCADE)
     #1 to 1 relation for the post owner
     owner = models.OneToOneField('User',default = 1,on_delete=models.CASCADE)
+    created = models.DateField(auto_now = False,auto_now_add = False)
     class Meta:
         db_table = "Post"
 
@@ -38,9 +42,11 @@ class Comment(models.Model):
     content = models.TextField(max_length = 100)
     #1 to 1 relation for the comment owner
     owner = models.OneToOneField('User',default = 1,on_delete=models.CASCADE)
+    created = models.DateField(auto_now = False,auto_now_add = False)
     class Meta:
         db_table = "Comment"
 
 #Rating class
 class Rating(models.Model):
     star = models.DecimalField(max_digits = 1,decimal_places = 1)
+    created = models.DateField(auto_now = False,auto_now_add = False)
