@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
-from .forms import Login
+from .forms import LoginForm,RegisterForm
+from SCE_Proj.models import bloguser
 # Create your views here.
 from django.shortcuts import render
 
@@ -19,21 +20,21 @@ def LandingPage(request):
       return LogIn """
 def LogIn(request):
    #added by eshed in 29/NOV/21
-   username = "not logged in"
    #if data was sent to the server
-   if(request.method == "GET"):
-      return render(request,"SCE_Proj/template/logIn.html")
-   elif(request.method == "POST"):
+   if(request.method == "POST"):
       #filling the form with the relevant data
-      this_form = Login(request.POST)
-   #if the credentials are correct
-   if this_form.is_valid():
-      username = this_form.cleaned_data['username']
-      return render(request, 'SCE_Proj/template/homepage.html', {"username" : username})
-   else:
-      this_form = Login()
+   
+      this_form = LoginForm(request.POST)
+      #if the credentials are correct
+      this_form.is_valid()
+      return HttpResponse(this_form.cleaned_data.get('email'))
+      if this_form.is_valid():
+         return render(request, 'SCE_Proj/template/homepage.html')
+      else:
+         this_form = LoginForm()
+         return HttpResponse("<h1>bad input</h1>")
 
-   return render(request, 'SCE_Proj/template/logIn.html', {"username" : username})
+   return render(request, 'SCE_Proj/template/test.html')
 
    #response.set_cookie('last_connection', datetime.datetime.now())
    #response.set_cookie('username', datetime.datetime.now())
@@ -54,4 +55,13 @@ def default_redirect(request):
       29/Nov/21
       return regsitet page  """
 def register(request):
+   if request.method == "POST":
+      form = RegisterForm(request.POST)
+      if form.is_valid():
+         form.save()
+      return render(request,"SCE_Proj/template/homepage.html")
+   else:
+      form = RegisterForm()
    return render(request,"SCE_Proj/template/register.html")
+
+
