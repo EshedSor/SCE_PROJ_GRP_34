@@ -16,6 +16,18 @@ def LandingPage(request):
       28/Nov/21
       return LogIn """
 def LogIn(request):
+   #added by eshed in 29/NOV/21
+   username = "not logged in"
+   #if data was sent to the server
+   if(request.method == "POST"):
+      #filling the form with the relevant data
+      this_form = Login(request.POST)
+   #if the credentials are correct
+   if this_form.is_valid():
+      username = this_form.cleaned_data['username']
+   else:
+      this_form = Login()
+   
    return render(request,"SCE_Proj/template/LogIn.html")
 """   Eshed Sorosky 
       28/Nov/21

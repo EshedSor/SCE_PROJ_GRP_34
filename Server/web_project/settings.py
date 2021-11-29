@@ -15,6 +15,7 @@ import os
 import mimetypes
 import django.core.mail
 """Email settings"""
+
 mimetypes.add_type("text/css", ".css", True)
 mimetypes.add_type("text/html", ".html", True)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SCE_Proj',
+    'dajaxice',
+    'dajax'
 ]
 
 MIDDLEWARE = [
@@ -108,8 +111,30 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+#for ajax
+TEMPLATE_LOADERS = (
+   'django.template.loaders.filesystem.Loader',
+   'django.template.loaders.app_directories.Loader',
+   'django.template.loaders.eggs.Loader',
+)
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.request',
+   'django.contrib.messages.context_processors.messages'
+)
 
+STATICFILES_FINDERS = (
+   'django.contrib.staticfiles.finders.FileSystemFinder',
+   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+   'dajaxice.finders.DajaxiceFinder',
+)
+
+DAJAXICE_MEDIA_PREFIX = 'dajaxice'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
