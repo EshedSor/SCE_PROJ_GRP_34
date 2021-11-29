@@ -4,83 +4,42 @@
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title>Owl-carousel Cards Slider | CodingNepal</title>
+      <title>ExplorAir</title>
       <link rel="stylesheet" href="{%static 'css/homepage.css' %}">
       <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
    </head>
    <body>
-        <!-- Bar Menu html file -->>
-
-      <div class="wrapper">
-        <nav>
-          <input type="checkbox" id="show-search">
-          <input type="checkbox" id="show-menu">
-          <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
-          <div class="content">
-          <div class="logo"><a href="#">CodingNepal</a></div>
-            <ul class="links">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li>
-                <a href="#" class="desktop-link">Features</a>
-                <input type="checkbox" id="show-features">
-                <label for="show-features">Features</label>
-                <ul>
-                  <li><a href="#">Drop Menu 1</a></li>
-                  <li><a href="#">Drop Menu 2</a></li>
-                  <li><a href="#">Drop Menu 3</a></li>
-                  <li><a href="#">Drop Menu 4</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="#" class="desktop-link">Services</a>
-                <input type="checkbox" id="show-services">
-                <label for="show-services">Services</label>
-                <ul>
-                  <li><a href="#">Drop Menu 1</a></li>
-                  <li><a href="#">Drop Menu 2</a></li>
-                  <li><a href="#">Drop Menu 3</a></li>
-                  <li>
-                    <a href="#" class="desktop-link">More Items</a>
-                    <input type="checkbox" id="show-items">
-                    <label for="show-items">More Items</label>
-                    <ul>
-                      <li><a href="#">Sub Menu 1</a></li>
-                      <li><a href="#">Sub Menu 2</a></li>
-                      <li><a href="#">Sub Menu 3</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#">Feedback</a></li>
-            </ul>
-          </div>
-          <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-          <form action="#" class="search-box">
-            <input type="text" placeholder="Type Something to Search..." required>
-            <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-          </form>
-        </nav>
-      </div>
-
-              <!-- Bar Menu html file -->>
-
+      <header class="container-fluid">
+         <div class="container">
+         <div class ="logo">
+             <h2>ExplorAir</h2>
+         </div>
+         <nav>
+             <a href="#">Blog</a> |
+             <a href="#">Contact</a> |
+             <a href="#">About</a> |
+             <a href="#">Log out</a>
+             <a href="#">&#128270;</a> 
+         </nav>                
+ </div>
+     </header>
       <div class="slider owl-carousel">
          <div class="card">
             <div class="img">
-               <img src="images/profile1.jpg" alt="">
+               <img src="{%static 'images/rio.jpg' %}" alt="">
             </div>
             <div class="content">
                <div class="title">
-                  Briana Tozour
+                  Brazil
                </div>
                <div class="sub-title">
-                  Graphic Designer
+                  Rio De Janeiro
                </div>
                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit modi dolorem quis quae animi nihil minus sed unde voluptas cumque.
+                  Rio de Janeiro is home to some of the world’s friendliest people and most beautiful beaches. Brazil’s interracial history of Portuguese, Japanese, Indian, and German settlers has created a multicultural society, which has led to festivals and celebrations that are known all over the world
+
                </p>
                <div class="btn">
                   <button>Read more</button>
@@ -89,17 +48,18 @@
          </div>
          <div class="card">
             <div class="img">
-               <img src="images/profile2.jpg" alt="">
+               <img src="{%static 'images/mexico.jpg' %}" alt="">
             </div>
             <div class="content">
                <div class="title">
-                  Pricilla Preez
+                  Peru
                </div>
                <div class="sub-title">
-                  Web Developer
+                  Machu Picchu
                </div>
                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit modi dolorem quis quae animi nihil minus sed unde voluptas cumque.
+                  Machu Picchu, also spelled Machupijchu, site of ancient Inca ruins located about 50 miles (80 km) northwest of Cuzco, Peru, in the Cordillera de Vilcabamba of the Andes Mountains. It is perched above the Urubamba River valley in a narrow saddle between two sharp peaks—Machu Picchu (“Old Peak”) and Huayna Picchu (“New Peak”)—at an elevation of 7,710 feet (2,350 metres)
+
                </p>
                <div class="btn">
                   <button>Read more</button>
@@ -108,17 +68,18 @@
          </div>
          <div class="card">
             <div class="img">
-               <img src="images/profile3.jpg" alt="">
+               <img src="{%static 'images/paris.jpg' %}" alt="">
             </div>
             <div class="content">
                <div class="title">
-                  Eliana Maia
+                  France
                </div>
                <div class="sub-title">
-                  App Developer
+                  Paris
                </div>
                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit modi dolorem quis quae animi nihil minus sed unde voluptas cumque.
+                  Ah, Paree, so much to see, so little time. Frankly it’s ridiculous how many great sights there are here… but where to even start? Yeah, alright, probably the Eiffel Tower and the Louvre – but what the hell do you do next? Whether you’re a first-timer or a Paris regular, the same goes – how do you even go about planning a day out here?
+
                </p>
                <div class="btn">
                   <button>Read more</button>
