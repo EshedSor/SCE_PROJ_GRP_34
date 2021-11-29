@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from SCE_Proj import views
+#from dajaxice.core import dajaxice_autodiscover, dajaxice_config
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 import SCE_Proj
 
 urlpatterns = [
@@ -24,7 +27,16 @@ urlpatterns = [
     # hello page
     path('hello/', SCE_Proj.views.hello, name = 'hello'),
     # default page
-    path('/', SCE_Proj.views.hello, name = 'hello'),
+    path('', SCE_Proj.views.default_redirect, name = "default_redirect"),
     # landingpage
-    path('landingpage/',SCE_Proj.views.Landingpage, name = "landingpage"),
+    path('landingpage/',SCE_Proj.views.LandingPage, name = "landingpage"),
+    #login page
+    path('LogIn/',SCE_Proj.views.LogIn,name = "LogIn"),
+    #homepage
+    path('homepage/',SCE_Proj.views.homepage,name = 'homepage'),
+    #register
+    path('register/',SCE_Proj.views.register,name = 'register'),
+    #ajax
+   # url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls'))
 ]
+#urlpatterns += staticfiles_urlpatterns()

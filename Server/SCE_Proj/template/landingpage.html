@@ -1,3 +1,4 @@
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<<<<<<< HEAD:template/landing page.html
     <link rel="stylesheet" href = "landing page.css">
+=======
+    <link rel="stylesheet" href = "{%static '/css/landingpage.css'%}">
+>>>>>>> 91ef29e4d2d38b7315258c2962d9415b89e6ead4:Server/SCE_Proj/template/landingpage.html
 </head>
 <body>
     <header class="container-fluid">
@@ -28,9 +33,25 @@
             <p>Here you can see recommendations and opinions of people on tourist destinations, you can comment and rate and even become one of the writers and publish posts with your experiences from trips around the world and recommendations on places people must go on their trips or even reviews of places not worth the effort or money.</p>
             <br>
             <nav>
-            <button ><a href="logIn.html">Log in</a></button>
-            <button ><a>Register</a></button>
-            <button ><a href="continue_page.html">Continue</a></button>
+           <input type="submit" value="Log in" onClick="loginF()"/>
+           <script>
+            function loginF() {
+              window.location.href="http://explorair.link/LogIn/";
+            }
+          </script>
+          <input type="submit" value="Register" onClick="registerF()"/>
+          <script>
+            function registerF() {
+              window.location.href="http://explorair.link/register/";
+            }
+          </script>
+            <input type="submit" value="Continue" onClick="continueF()"/>
+            <script>
+              function continueF() {
+                window.location.href="http://explorair.link/homepage/";
+              }
+            </script>
+
             </nav>
         </div>
         </div>

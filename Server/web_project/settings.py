@@ -12,10 +12,16 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import mimetypes
+import django.core.mail
+"""Email settings"""
 
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/html", ".html", True)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -23,9 +29,9 @@ TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
 SECRET_KEY = 'django-insecure-j78oju9w(q3x5ct4l^2)gb0^a5k@(oe#u(mn5k0-aun^t0jefb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SCE_Proj',
+    'dajaxice',
+    'dajax'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +63,7 @@ ROOT_URLCONF = 'web_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/eshed/Desktop/SCE_Proj/Eshed/Server',],
+        'DIRS': ['C:/SCE_Proj/Server',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,8 +111,30 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+#for ajax
+TEMPLATE_LOADERS = (
+   'django.template.loaders.filesystem.Loader',
+   'django.template.loaders.app_directories.Loader',
+   'django.template.loaders.eggs.Loader',
+)
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.request',
+   'django.contrib.messages.context_processors.messages'
+)
 
+STATICFILES_FINDERS = (
+   'django.contrib.staticfiles.finders.FileSystemFinder',
+   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+   'dajaxice.finders.DajaxiceFinder',
+)
+
+DAJAXICE_MEDIA_PREFIX = 'dajaxice'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -123,8 +153,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+PROJECT_DIR=os.path.dirname(__file__)
+STATIC_ROOT= os.path.join(PROJECT_DIR,'/SCE_Proj/static/')
 STATICFILES_DIRS = [
-    "C:/Users/eshed/Desktop/SCE_Proj/Eshed/Server/",
+    "C:/SCE_Proj/Server/",
+    "C:/SCE_Proj/Server/SCE_Proj/static",
+     os.path.join(STATIC_ROOT, 'static/'),
+     'C:/SCE_Proj/Server/SCE_Proj/static/css',
+     BASE_DIR / "static",
+    '/var/www/static/',
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
