@@ -1,3 +1,4 @@
+from django import http
 from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
@@ -55,9 +56,11 @@ def default_redirect(request):
 def register(request):
    if request.method == "POST":
       form = RegisterForm(request.POST)
+      form.is_valid()
+      return HttpResponse(form.cleaned_data.get('email'))
       if form.is_valid():
          form.save()
-      return render(request,"SCE_Proj/template/homepage.html")
+         return render(request,"SCE_Proj/template/homepage.html")
    else:
       form = RegisterForm()
    return render(request,"SCE_Proj/template/register.html")

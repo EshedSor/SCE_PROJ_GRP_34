@@ -28,9 +28,23 @@ class LoginForm(forms.Form):
         return passval
 #register form
 class RegisterForm(forms.Form):
-
     name = forms.CharField(max_length =20)
     surname = forms.CharField(max_length = 20)
     email = forms.EmailField(max_length = 50)
     password = forms.CharField(widget = forms.PasswordInput(),max_length = 30)
     confirmpass = forms.CharField(widget = forms.PasswordInput(),max_length = 30)
+    class Meta:
+        model = bloguser
+    #email validation
+    def clean_email(self):
+        emailval = self.cleaned_data.get('password')
+        #querying the database
+        if not bloguser.objects.filter(email = emailval).exists():
+            return emailval
+        return False
+        
+    def clean_password(self):
+        if self.cleaned_data.get('password') != self.cleaned_data.get('confirmpass'):
+            return False
+        return self.cleaned_data.get('password')
+    
