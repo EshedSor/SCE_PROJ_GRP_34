@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from SCE_Proj import views
-from dajaxice.core import dajaxice_autodiscover, dajaxice_config
+#from dajaxice.core import dajaxice_autodiscover, dajaxice_config
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 import SCE_Proj
@@ -35,6 +35,6 @@ urlpatterns = [
     #homepage
     path('homepage/',SCE_Proj.views.homepage,name = 'homepage'),
     #ajax
-    url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls'))
+   # url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls'))
 ]
-urlpatterns += staticfiles_urlpatterns()
+#urlpatterns += staticfiles_urlpatterns()
