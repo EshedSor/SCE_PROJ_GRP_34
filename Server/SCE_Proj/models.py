@@ -4,11 +4,6 @@ from django.db import models
 #   Created by Eshed Sorotsky
 #   29/NOV/21
 #the blogusers model, general for registered,editor & administrator
-class tmp(models.Model):
-    email = models.EmailField(max_length = 50,unique = True)
-    password = models.CharField(max_length = 30)
-    class Meta:
-        db_table = "tmp"
 class bloguser(models.Model):
     id = models.BigAutoField(primary_key = True)
     name = models.CharField(max_length = 20)

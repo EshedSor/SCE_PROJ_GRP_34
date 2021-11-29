@@ -26,15 +26,13 @@ def LogIn(request):
    
       this_form = LoginForm(request.POST)
       #if the credentials are correct
-      this_form.is_valid()
-      return HttpResponse(this_form.cleaned_data.get('email'))
       if this_form.is_valid():
          return render(request, 'SCE_Proj/template/homepage.html')
       else:
          this_form = LoginForm()
          return HttpResponse("<h1>bad input</h1>")
 
-   return render(request, 'SCE_Proj/template/test.html')
+   return render(request, 'SCE_Proj/template/logIn.html')
 
    #response.set_cookie('last_connection', datetime.datetime.now())
    #response.set_cookie('username', datetime.datetime.now())

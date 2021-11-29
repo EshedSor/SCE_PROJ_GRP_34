@@ -1,20 +1,31 @@
 from django import forms
 from django.contrib.auth.models import User
-from SCE_Proj.models import tmp
+from SCE_Proj.models import bloguser
 
 #login form
 class LoginForm(forms.Form):
     email = forms.EmailField(max_length = 50)
     password = forms.CharField(widget = forms.PasswordInput(),max_length =30)
     class Meta:
-        model = tmp
-        fields = ('email')
+        model = bloguser
+    #email validation
     def clean_email(self):
         emailval = self.cleaned_data.get('email')
-        dbuser = tmp.objects.get(email = emailval)
-        if not dbuser:
+        #querying the database
+        try:
+            dbemail = bloguser.objects.get(email = emailval)
+        except bloguser.DoesNotExist:
             raise forms.ValidationError("User does not exist in our db!")        
         return emailval
+    #password validation
+    def clean_password(self):
+        passval = self.cleaned_data.get('password')
+        #querying the database
+        try:
+            dbpass = bloguser.objects.get(password = passval)
+        except bloguser.DoesNotExist:
+            raise forms.ValidationError("User does not exist in our db!")        
+        return passval
 #register form
 class RegisterForm(forms.Form):
 
