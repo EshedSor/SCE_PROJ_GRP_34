@@ -24,7 +24,7 @@ urlpatterns = [
     # hello page
     path('hello/', SCE_Proj.views.hello, name = 'hello'),
     # default page
-    path('', SCE_Proj.views.LandingPage, name = "landingpage"),
+    path('', SCE_Proj.views.default_redirect, name = "default_redirect"),
     # landingpage
     path('landingpage/',SCE_Proj.views.LandingPage, name = "landingpage"),
     #login page

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
 # Create your views here.
 from django.shortcuts import render
@@ -22,3 +22,9 @@ def LogIn(request):
       return LogIn """
 def homepage(request):
    return render(request, "SCE_Proj/template/homepage.html")
+
+"""   Eshed Sorosky 
+      29/Nov/21
+      redirect from default dns  """
+def default_redirect(request):
+   return redirect(LandingPage)
