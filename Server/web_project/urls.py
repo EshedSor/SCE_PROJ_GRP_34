@@ -34,6 +34,8 @@ urlpatterns = [
     path('LogIn/',SCE_Proj.views.LogIn,name = "LogIn"),
     #homepage
     path('homepage/',SCE_Proj.views.homepage,name = 'homepage'),
+    #register
+    path('register/',SCE_Proj.views.register,name = 'register'),
     #ajax
    # url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls'))
 ]

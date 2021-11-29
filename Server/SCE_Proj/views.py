@@ -49,3 +49,8 @@ def homepage(request):
       redirect from default dns  """
 def default_redirect(request):
    return redirect(LandingPage)
+"""   Eshed Sorosky 
+      29/Nov/21
+      return regsitet page  """
+def register(request):
+   return render(request,"SCE_PRoj/template/register.html")
