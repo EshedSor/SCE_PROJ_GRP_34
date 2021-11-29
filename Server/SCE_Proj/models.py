@@ -13,10 +13,6 @@ class bloguser(models.Model):
     email = models.EmailField(max_length = 50,unique = True)
     role = models.CharField(max_length = 10,default = 'registered')
     #picture = models.ImageField(default = None,upload_to=None, height_field=None, width_field=None, max_length=100)
-    #1 to many relation for all the posts the bloguser posted
-    posts = models.ForeignKey('Post',default = 1,on_delete=models.CASCADE)
-    #1 to many relation for all the comments the bloguser made
-    comments = models.ForeignKey('Comment',default = 1,on_delete = models.CASCADE)
     #created = models.DateTimeField(auto_now_add = False)
 
     class Meta:
