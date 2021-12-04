@@ -9,9 +9,9 @@ class bloguser(models.Model):
     name = models.CharField(max_length = 20)
     surname = models.CharField(max_length = 20,default = '')
     password = models.CharField(max_length = 30)
-    nickname = models.CharField(max_length = 20,unique = True,default = '')
+    nickname = models.CharField(max_length = 20,unique = True,default = '',null = True)
     email = models.EmailField(max_length = 50,unique = True)
-    role = models.CharField(max_length = 10,default = 'registered')
+    role = models.CharField(max_length = 10,default = 'registered',null = True)
     #picture = models.ImageField(default = None,upload_to=None, height_field=None, width_field=None, max_length=100)
     #created = models.DateTimeField(auto_now_add = False)
 

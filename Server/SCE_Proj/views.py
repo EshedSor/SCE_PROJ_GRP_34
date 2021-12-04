@@ -3,9 +3,8 @@ from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
 from .forms import LoginForm,RegisterForm
+from django.contrib import messages
 from SCE_Proj.models import bloguser
-# Create your views here.
-from django.shortcuts import render
 
 def hello(request):
    return render(request, "SCE_Proj/template/hello.html", {})
@@ -56,10 +55,15 @@ def default_redirect(request):
 def register(request):
    if request.method == "POST":
       form = RegisterForm(request.POST)
-      form.is_valid()
-      return HttpResponse(form.cleaned_data.get('email'))
+      #return HttpResponse(form.cleaned_data.get('email'))
       if form.is_valid():
-         form.save()
+         dbuser = bloguser(
+            name = form.cleaned_data.get('name'),
+            surname = form.cleaned_data.get('surname'),
+            password = form.cleaned_data.get('password'),
+            email = form.cleaned_data.get('email')
+         )
+         dbuser.save()
          return render(request,"SCE_Proj/template/homepage.html")
    else:
       form = RegisterForm()
