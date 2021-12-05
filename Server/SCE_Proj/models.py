@@ -12,6 +12,7 @@ class bloguser(models.Model):
     nickname = models.CharField(max_length = 20,unique = True,default = '',null = True)
     email = models.EmailField(max_length = 50,unique = True)
     role = models.CharField(max_length = 10,default = 'registered',null = True)
+    created = models.DateTimeField(auto_now_add = True)
     #picture = models.ImageField(default = None,upload_to=None, height_field=None, width_field=None, max_length=100)
     #created = models.DateTimeField(auto_now_add = False)
 
@@ -29,7 +30,7 @@ class Post(models.Model):
     comments = models.ForeignKey('Comment',default = None,on_delete=models.CASCADE)
     #1 to 1 relation for the post owner
     owner = models.OneToOneField('bloguser',default = None,on_delete=models.CASCADE)
-    #created = models.DateTimeField(auto_now_add = False)
+    created = models.DateTimeField(auto_now_add = True)
     class Meta:
         db_table = "Post"
 
@@ -39,7 +40,7 @@ class Comment(models.Model):
     content = models.TextField(max_length = 100)
     #1 to 1 relation for the comment owner
     owner = models.OneToOneField('bloguser',default = None,on_delete=models.CASCADE)
-   # created = models.DateTimeField(auto_now_add = False)
+    created = models.DateTimeField(auto_now_add = True)
     class Meta:
         db_table = "Comment"
 
