@@ -14,7 +14,22 @@ def hello(request):
       28/Nov/21
       return Landingpage """
 def LandingPage(request):
-   return render(request,"SCE_Proj/template/landingpage.html")
+   #checking if there are cookies
+   if 'email' in request.COOKIES and 'last_connection' in request.COOKIES:
+      email = request.COOKIES.get('email')
+      #checking if cookie exist
+      last_connection = request.COOKIES.get('last_connection')
+      last_connection_time = datetime.datetime.strptime(last_connection[:-7],"%Y-%m-%d %H:%M:%S")
+      #cookie session is 30 seconds
+      if(datetime.datetime.now() - last_connection_time).seconds < 30:
+         response = redirect('http://explorair.link/homepage')
+      #if the cookies are past due then return to the login page
+      else:
+        response = render(request,'SCE_Proj/template/landingpage.html')
+   #if there arent cookies just sets the response to the login page
+   else:
+      response = render(request,'SSCE_Proj/template/landingpage.html')
+   return response
 
 """   Eshed Sorosky 
       28/Nov/21
@@ -28,23 +43,31 @@ def LogIn(request):
       this_form = LoginForm(request.POST)
       #if the credentials are correct
       if this_form.is_valid():
-         response = render(request,'SCE_Proj/template/homepage.html')
+         #adding to the response the html page to represent
+         response = redirect('http://explorair.link/homepage')
+         #setting the cookies since the form was valid
          response.set_cookie('last_connection', datetime.datetime.now())
          response.set_cookie('email',datetime.datetime.now())
+      #if the form wasnt valid then refresh the login form and edit the response accodingly
       else:
          this_form = LoginForm()
          response = render(request,'SCE_Proj/template/logIn.html')
       #for cookie support
+   #if this is a GET response that means we didnt submit any form
    elif(request.method == 'GET'):
+      #checking if there are cookies
       if 'email' in request.COOKIES and 'last_connection' in request.COOKIES:
          email = request.COOKIES.get('email')
          #checking if cookie exist
          last_connection = request.COOKIES.get('last_connection')
          last_connection_time = datetime.datetime.strptime(last_connection[:-7],"%Y-%m-%d %H:%M:%S")
+         #cookie session is 30 seconds
          if(datetime.datetime.now() - last_connection_time).seconds < 30:
-            response = render(request,'SCE_Proj/template/homepage.html')
+            response = redirect('http://explorair.link/homepage')
+         #if the cookies are past due then return to the login page
          else:
            response = render(request,'SCE_Proj/template/logIn.html')
+      #if there arent cookies just sets the response to the login page
       else:
          response = render(request,'SCE_Proj/template/logIn.html')
    return response
@@ -59,7 +82,7 @@ def homepage(request):
       29/Nov/21
       redirect from default dns  """
 def default_redirect(request):
-   return redirect(LandingPage)
+   return LandingPage(request)
 """   Eshed Sorosky 
       29/Nov/21
       return regsitet page  """
@@ -75,9 +98,26 @@ def register(request):
             email = form.cleaned_data.get('email')
          )
          dbuser.save()
-         return render(request,"SCE_Proj/template/homepage.html")
-   else:
-      form = RegisterForm()
-   return render(request,"SCE_Proj/template/register.html")
+         return redirect("http://explorair.link/homepage")
+      else:
+         form = RegisterForm()
+         response = render(request,'SCE_Proj/template/register.html')
+   elif(request.method == 'GET'):
+      #checking if there are cookies
+      if 'email' in request.COOKIES and 'last_connection' in request.COOKIES:
+         email = request.COOKIES.get('email')
+         #checking if cookie exist
+         last_connection = request.COOKIES.get('last_connection')
+         last_connection_time = datetime.datetime.strptime(last_connection[:-7],"%Y-%m-%d %H:%M:%S")
+         #cookie session is 30 seconds
+         if(datetime.datetime.now() - last_connection_time).seconds < 30:
+            response = redirect('http://explorair.link/homepage')
+         #if the cookies are past due then return to the login page
+         else:
+           response = render(request,'SCE_Proj/template/register.html')
+      #if there arent cookies just sets the response to the login page
+      else:
+         response = render(request,'SCE_Proj/template/register.html')
+   return response
 
 
