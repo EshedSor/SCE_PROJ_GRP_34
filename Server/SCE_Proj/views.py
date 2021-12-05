@@ -1,10 +1,11 @@
 from django import http
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, render
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
 from .forms import LoginForm,RegisterForm
 from django.contrib import messages
 from SCE_Proj.models import bloguser
+import datetime
 
 def hello(request):
    return render(request, "SCE_Proj/template/hello.html", {})
@@ -27,17 +28,27 @@ def LogIn(request):
       this_form = LoginForm(request.POST)
       #if the credentials are correct
       if this_form.is_valid():
-         return render(request, 'SCE_Proj/template/homepage.html')
+         response = render(request,'SCE_Proj/template/homepage.html')
+         response.set_cookie('last_connection', datetime.datetime.now())
+         response.set_cookie('email',datetime.datetime.now())
       else:
          this_form = LoginForm()
-         return HttpResponse("<h1>bad input</h1>")
-
-   return render(request, 'SCE_Proj/template/logIn.html')
-
-   #response.set_cookie('last_connection', datetime.datetime.now())
-   #response.set_cookie('username', datetime.datetime.now())
-	
+         response = render(request,'SCE_Proj/template/logIn.html')
+      #for cookie support
+   elif(request.method == 'GET'):
+      if 'email' in request.COOKIES and 'last_connection' in request.COOKIES:
+         email = request.COOKIES.get('email')
+         #checking if cookie exist
+         last_connection = request.COOKIES.get('last_connection')
+         last_connection_time = datetime.datetime.strptime(last_connection[:-7],"%Y-%m-%d %H:%M:%S")
+         if(datetime.datetime.now() - last_connection_time).seconds < 30:
+            response = render(request,'SCE_Proj/template/homepage.html')
+         else:
+           response = render(request,'SCE_Proj/template/logIn.html')
+      else:
+         response = render(request,'SCE_Proj/template/logIn.html')
    return response
+
 """   Eshed Sorosky 
       28/Nov/21
       return LogIn """
