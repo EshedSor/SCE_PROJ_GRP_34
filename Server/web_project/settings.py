@@ -167,3 +167,18 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#email smtp server connection
+EMAIL_HOST = "localhost"
+
+EMAIL_HOST_USER = "eshed"
+
+EMAIL_HOST_PASSWORD = "7kanunu7"
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+
+EMAIL_USE_SSL = False
+
+DEFAULT_FROM_EMAIL  = 'system@explorair.link'
