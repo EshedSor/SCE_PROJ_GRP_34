@@ -6,6 +6,19 @@ from .forms import LoginForm,RegisterForm
 from django.contrib import messages
 from SCE_Proj.models import bloguser
 import datetime
+from django.core.mail import send_mail
+#--------------------------------------------
+"""   Eshed Sorosky 
+      6/DEC/21
+      sending welcome email """
+def welcome_mail(request,recipient):
+      send_mail(
+         'Welcome to our blog',
+         'Hey ' +recipient['name'] +" "+recipient['surname'] +" we welcome you to our blog",
+         'system@explorair.link',
+         [recipient['email']],
+         fail_silently= False,
+      )
 #--------------------------------------------
 """   Eshed Sorosky 
       6/DEC/21
@@ -77,7 +90,7 @@ def default_redirect(request):
    return LandingPage(request)
 """   Eshed Sorosky 
       29/Nov/21
-      return regsitet page  """
+      return regsiter page  """
 def register(request):
    if request.method == "POST":
       form = RegisterForm(request.POST)
@@ -90,7 +103,18 @@ def register(request):
             email = form.cleaned_data.get('email')
          )
          dbuser.save()
-         return redirect("http://explorair.link/homepage")
+         """
+         #sending welcome email, building the value dict
+         welcome_mail(
+            request,
+               {
+                  "name":form.cleaned_data.get('name'),
+                  "surname":form.cleaned_data.get('surname'),
+                  "email":form.cleaned_data.get('email')
+               }
+            )
+         """
+         return redirect("http://explorair.link/logIn")
       else:
          form = RegisterForm()
          response = render(request,'SCE_Proj/template/register.html')
