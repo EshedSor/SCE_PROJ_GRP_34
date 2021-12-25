@@ -42,6 +42,15 @@ def check_cookies(request, url, path):
    else:
       response = render(request,path)
    return response
+   #--------------------------------------------
+""" Eshed Sorosky 
+      7/DEC/21
+      return regsiter page  """
+def get_bloguser_ob(request):
+   """the function returns a blogspot user from the database"""
+   obj_email = request.COOKIES.get('email')
+   obj = bloguser.objects.get(email = obj_email)
+   return obj
 #--------------------------------------------
 """   Eshed Sorosky 
       28/Nov/21
@@ -123,7 +132,13 @@ def register(request):
       response = check_cookies(request,"http://explorair.link/homepage","SCE_Proj/template/register.html")
    return response
 #--------------------------------------------
-
-
+"""   Eshed Sorosky 
+      7/DEC/21
+      return regsiter page  """
+def get_bloguser_ob(request):
+   """the function returns a blogspot user from the database"""
+   obj_email = request.COOKIES.get('email')
+   obj = bloguser.objects.get(email = obj_email)
+   return obj
 
 
