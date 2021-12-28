@@ -141,4 +141,17 @@ def get_bloguser_ob(request):
    obj = bloguser.objects.get(email = obj_email)
    return obj
 
-
+#--------------------------------------------
+"""   Eshed Sorosky 
+      25/DEC/21
+      return about page page  """
+def about_page(request):
+   """the function returns the about page"""
+   return render(request,'SCE_Proj/template/about_page.html')
+#--------------------------------------------
+"""   Eshed Sorosky 
+      25/DEC/21
+      return about setting page  """
+def settings_page(request):
+   """the function returns the about page"""
+   return render(request,'SCE_Proj/template/setting_page.html')
