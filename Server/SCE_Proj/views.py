@@ -8,6 +8,23 @@ from SCE_Proj.models import bloguser
 import datetime
 from django.core.mail import send_mail
 #--------------------------------------------
+""" Eshed Sorosky 
+      7/DEC/21
+      return regsiter page  """
+def get_bloguser_ob(request):
+   """the function returns a blogspot user from the database using cookies"""
+   obj_email = request.COOKIES.get('email')
+   obj = bloguser.objects.get(email = obj_email)
+   return obj
+#--------------------------------------------
+""" Eshed Sorosky 
+      28/DEC/21
+      return regsiter page  """
+def get_bloguser_obj(request,mail):
+   """the function returns a blogspot user from the database"""
+   obj = bloguser.objects.get(email = mail)
+   return obj
+#--------------------------------------------
 """   Eshed Sorosky 
       6/DEC/21
       sending welcome email """
@@ -32,25 +49,28 @@ def check_cookies(request, url, path):
       #checking if cookie exist
       last_connection = request.COOKIES.get('last_connection')
       last_connection_time = datetime.datetime.strptime(last_connection[:-7],"%Y-%m-%d %H:%M:%S")
-      #cookie session is 30 seconds
+      #cookie session is 300 seconds
       if(datetime.datetime.now() - last_connection_time).seconds < 30:
-         response = redirect(url)
+         #added by eshed 28/DEC/21
+         #changes for neccessary role and showing logged user data(regex)
+         if path.find("XXX") != -1:
+            dbuser = bloguser.objects.get(email = email)
+            dbrole = dbuser.role
+            path = path.replace("XXX",dbrole)
+         if path.find("homepage") != -1:
+            response = render(request,path,{"fullsname":"{0} {1}".format(dbuser.name,dbuser.surname),
+                                            "nickname":dbuser.nickname,
+                                            "role":dbrole})
       #if the cookies are past due then return to the relevant page
       else:
          response = render(request,path)
    #if there arent cookies just sets the response to the relevant page page
    else:
+      if path.find("XXX")!= -1:
+        path = path.replace("XXX","guest")
       response = render(request,path)
    return response
-   #--------------------------------------------
-""" Eshed Sorosky 
-      7/DEC/21
-      return regsiter page  """
-def get_bloguser_ob(request):
-   """the function returns a blogspot user from the database"""
-   obj_email = request.COOKIES.get('email')
-   obj = bloguser.objects.get(email = obj_email)
-   return obj
+
 #--------------------------------------------
 """   Eshed Sorosky 
       28/Nov/21
@@ -67,7 +87,6 @@ def LogIn(request):
    #if data was sent to the server
    if(request.method == "POST"):
       #filling the form with the relevant data
-   
       this_form = LoginForm(request.POST)
       #if the credentials are correct
       if this_form.is_valid():
@@ -75,7 +94,7 @@ def LogIn(request):
          response = redirect('http://explorair.link/homepage')
          #setting the cookies since the form was valid
          response.set_cookie('last_connection', datetime.datetime.now())
-         response.set_cookie('email',datetime.datetime.now())
+         response.set_cookie('email',this_form.cleaned_data.get('email'))
       #if the form wasnt valid then refresh the login form and edit the response accodingly
       else:
          this_form = LoginForm()
@@ -90,7 +109,8 @@ def LogIn(request):
       28/Nov/21
       return LogIn """
 def homepage(request):
-   return render(request, "SCE_Proj/template/homepage.html")
+   response = check_cookies(request, "http://explorair.link/homepage","SCE_Proj/template/homepage-XXX.html")
+   return response
 #--------------------------------------------
 """   Eshed Sorosky 
       29/Nov/21
@@ -131,16 +151,6 @@ def register(request):
       #checking if there are cookies
       response = check_cookies(request,"http://explorair.link/homepage","SCE_Proj/template/register.html")
    return response
-#--------------------------------------------
-"""   Eshed Sorosky 
-      7/DEC/21
-      return regsiter page  """
-def get_bloguser_ob(request):
-   """the function returns a blogspot user from the database"""
-   obj_email = request.COOKIES.get('email')
-   obj = bloguser.objects.get(email = obj_email)
-   return obj
-
 #--------------------------------------------
 """   Eshed Sorosky 
       25/DEC/21
