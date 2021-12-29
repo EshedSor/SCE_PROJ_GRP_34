@@ -19,6 +19,7 @@
                    <span></span>
                   <input type="text" name="name" id="name" placeholder="First Name">
                   <input type="text" name="surname" id="surname" placeholder="Last Name">
+
              
                     </div>
                <div class="field">
@@ -30,10 +31,12 @@
                     <span></span>
                   <input name = "password" type="password" id="password" class="pass-key" required placeholder="Enter Password">
                   <input name = "confirmpass" type="password" id="confirmpass" class="pass-key" required placeholder="Confirm Password">
+
                </div>
                
                <div class="field">
-                  <input type="submit" value="Sign Up">
+                  <input type="submit" value="Sign Up" onClick="signupF()">
+                  <script>function signup(){window.location.href="page after registering"}</script>
                </div>
             </form>
             
