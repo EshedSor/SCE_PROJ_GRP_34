@@ -1,14 +1,56 @@
 from django import forms
+from django.contrib.auth.models import User
+from django.forms.models import ModelForm
+from django.http.response import HttpResponse
+from SCE_Proj.models import bloguser
+from django.contrib.auth.forms import UserCreationForm
 
 #login form
-class Login(forms.Form):
-    user = forms.EmailField(max_length = 50)
-    password = forms.CharField(widget = forms.PasswordInput(),max_length =30)
-
-#register form
-class Register(forms.Form):
-    name = forms.CharField(max_length =20)
-    surname = forms.CharField(max_length = 20)
+class LoginForm(forms.Form):
     email = forms.EmailField(max_length = 50)
-    password = forms.CharField(widget = forms.PasswordInput(),max_length = 30)
-    confirmpass = forms.CharField(widget = forms.PasswordInput(),max_length = 30)
+    password = forms.CharField(widget = forms.PasswordInput(),max_length =30)
+    class Meta:
+        model = bloguser
+    #email validation
+    def clean_email(self):
+        emailval = self.cleaned_data.get('email')
+        #querying the database
+        try:
+            dbemail = bloguser.objects.get(email = emailval)
+        except bloguser.DoesNotExist:
+            raise forms.ValidationError("User does not exist in our db!")        
+        return emailval
+    #password validation
+    def clean_password(self):
+        passval = self.cleaned_data.get('password')
+        emailval = self.cleaned_data.get('email')
+        #querying the database
+        try:
+            dbpass = bloguser.objects.get(password = passval,email = emailval)
+        except bloguser.DoesNotExist:
+            raise forms.ValidationError("User does not exist in our db!")        
+        return passval
+#register form
+class RegisterForm(forms.Form):
+    name = forms.CharField(max_length =20,required=True)
+    surname = forms.CharField(max_length = 20,required=True)
+    email = forms.EmailField(max_length = 50,required= True)
+    password = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=True)
+    confirmpass = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=True)
+    class Meta:
+        model = bloguser
+    #email validation
+    def clean_email(self):
+        emailval = self.cleaned_data.get('email')
+        #querying the database
+        try:
+            dbemail = bloguser.objects.get(email = emailval)
+        except bloguser.DoesNotExist:
+            return emailval        
+        raise forms.ValidationError("User already exist in our db!")  
+    def clean_confirmpassword(self):
+        passval = self.cleaned_data.get('password')
+        passval2 = self.cleaned_data.get('confirmpass')
+        if passval == passval2:
+            return passval
+        raise forms.ValidationError("passwords dont match !")  

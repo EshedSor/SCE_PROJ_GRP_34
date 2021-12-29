@@ -14,11 +14,12 @@
       <div class="bg-img">
          <div class="content">
             <header>Sign Up</header>
-            <form method="post">
+            <form name = "RegisterForm" action="" method="post">{% csrf_token%}
                <div class="field">
                    <span></span>
-                  <input type="text" name="firstName" id="name" placeholder="First Name">
-                  <input type="text" name="lastName" id="surname" placeholder="Last Name">
+                  <input type="text" name="name" id="name" placeholder="First Name">
+                  <input type="text" name="surname" id="surname" placeholder="Last Name">
+
              
                     </div>
                <div class="field">
@@ -28,8 +29,9 @@
               
                <div class="field">
                     <span></span>
-                  <input type="password" id="password" class="pass-key" required placeholder="Enter Password">
-                  <input type="password" id="confirmpass" class="pass-key" required placeholder="Confirm Password">
+                  <input name = "password" type="password" id="password" class="pass-key" required placeholder="Enter Password">
+                  <input name = "confirmpass" type="password" id="confirmpass" class="pass-key" required placeholder="Confirm Password">
+
                </div>
                
                <div class="field">

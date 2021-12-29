@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SCE_Proj',
-    'dajaxice',
+    #'dajaxice',
     'dajax'
 ]
 
@@ -131,10 +131,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 STATICFILES_FINDERS = (
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-   'dajaxice.finders.DajaxiceFinder',
+   #'dajaxice.finders.DajaxiceFinder',
 )
 
-DAJAXICE_MEDIA_PREFIX = 'dajaxice'
+#DAJAXICE_MEDIA_PREFIX = 'dajaxice'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -167,3 +167,18 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#email smtp server connection
+EMAIL_HOST = "localhost"
+
+EMAIL_HOST_USER = "eshed"
+
+EMAIL_HOST_PASSWORD = "7kanunu7"
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+
+EMAIL_USE_SSL = False
+
+DEFAULT_FROM_EMAIL  = 'system@explorair.link'

@@ -24,8 +24,6 @@ import SCE_Proj
 urlpatterns = [
     # admin console
     path('admin/', admin.site.urls),
-    # hello page
-    path('hello/', SCE_Proj.views.hello, name = 'hello'),
     # default page
     path('', SCE_Proj.views.default_redirect, name = "default_redirect"),
     # landingpage
@@ -36,6 +34,10 @@ urlpatterns = [
     path('homepage/',SCE_Proj.views.homepage,name = 'homepage'),
     #register
     path('register/',SCE_Proj.views.register,name = 'register'),
+    #homepage
+    path('settings/',SCE_Proj.views.settings_page,name = 'settings_page'),
+    #register
+    path('about/',SCE_Proj.views.about_page,name = 'about_page'),
     #ajax
    # url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls'))
 ]
