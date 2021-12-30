@@ -6,7 +6,7 @@ from SCE_Proj.models import bloguser
 from django.contrib.auth.forms import UserCreationForm
 
 #login form
-class LoginForm(forms.Form):
+class loginForm(forms.Form):
     email = forms.EmailField(max_length = 50)
     password = forms.CharField(widget = forms.PasswordInput(),max_length =30)
     class Meta:
@@ -53,4 +53,10 @@ class RegisterForm(forms.Form):
         passval2 = self.cleaned_data.get('confirmpass')
         if passval == passval2:
             return passval
-        raise forms.ValidationError("passwords dont match !")  
+        raise forms.ValidationError("passwords dont match !")
+class settings_info(forms.Form):
+    name = forms.CharField(max_length =20,required=False)
+    surname = forms.CharField(max_length = 20,required=False)
+    nickname = forms.CharField(max_length= 20,required = False)
+    bio = forms.CharField(max_length=300,required = False)
+  
