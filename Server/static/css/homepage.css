@@ -40,7 +40,7 @@ text-decoration: underline;
 }
 
 body{
-    background-image: url("/static/images/background.jpg.jpg");
+    background-image: url("/static/images/background.jpg");
       height: 100%; 
       background-position: center;
       background-repeat: no-repeat;
