@@ -9,7 +9,7 @@ class bloguser(models.Model):
     name = models.CharField(max_length = 20)
     surname = models.CharField(max_length = 20,default = '')
     password = models.CharField(max_length = 30)
-    nickname = models.CharField(max_length = 20,unique = True,default = '',null = True)
+    nickname = models.CharField(max_length = 20,default = '',null = True)
     email = models.EmailField(max_length = 50,unique = True)
     role = models.CharField(max_length = 10,default = 'registered',null = True)
     created = models.DateTimeField(auto_now_add = True)
