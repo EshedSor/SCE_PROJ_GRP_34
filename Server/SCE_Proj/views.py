@@ -2,28 +2,22 @@ from django import http
 from django.shortcuts import render,redirect, render
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
-from .forms import loginForm,RegisterForm
+from .forms import loginForm,RegisterForm,settings_info
 from django.contrib import messages
 from SCE_Proj.models import bloguser
 import datetime
 from django.core.mail import send_mail
+
+COOKIE_TIMEOUT = 600
 #--------------------------------------------
 """ Eshed Sorosky 
       7/DEC/21
       return regsiter page  """
 def get_bloguser_ob(request):
    """the function returns a blogspot user from the database using cookies"""
-   obj_email = request.COOKIES.get('email')
-   obj = bloguser.objects.get(email = obj_email)
-   return obj
-#--------------------------------------------
-""" Eshed Sorosky 
-      28/DEC/21
-      return regsiter page  """
-def get_bloguser_obj(request,mail):
-   """the function returns a blogspot user from the database"""
-   obj = bloguser.objects.get(email = mail)
-   return obj
+   email = request.COOKIES.get('email')
+   dbuser = bloguser.objects.get(email = email)
+   return dbuser
 #--------------------------------------------
 """   Eshed Sorosky 
       6/DEC/21
@@ -45,7 +39,7 @@ def verify_cookie(request):
    if 'email' in request.COOKIES and 'last_connection' in request.COOKIES:
       last_connection = request.COOKIES.get('last_connection')
       last_connection_time = datetime.datetime.strptime(last_connection[:-7],"%Y-%m-%d %H:%M:%S")
-      if(datetime.datetime.now() - last_connection_time).seconds < 30:
+      if(datetime.datetime.now() - last_connection_time).seconds < COOKIE_TIMEOUT:
          return True
    return False
 #--------------------------------------------
@@ -93,8 +87,7 @@ def login(request):
 def homepage(request):
    path = "SCE_Proj/template/homepage-XXX.html"
    if verify_cookie(request):
-      email = request.COOKIES.get('email')
-      dbuser = bloguser.objects.get(email = email)
+      dbuser = get_bloguser_ob(request)
       dbrole = dbuser.role
       path = path.replace("XXX",dbrole)
       response = render(request,path,{"fullsname":"{0} {1}".format(dbuser.name,dbuser.surname),
@@ -159,4 +152,28 @@ def about_page(request):
       return about setting page  """
 def settings_page(request):
    """the function returns the about page"""
-   return render(request,'SCE_Proj/template/setting_page.html')
+   if request.method == 'POST':
+      form = settings_info()
+      if(form.is_valid):
+         dbuser = get_bloguser_ob(request)
+         if form.cleaned_data.get('name')!=None:
+            dbuser.name = form.cleaned_data.get('name')
+         if form.cleaned_data.get('surname'):
+            dbuser.surname = form.cleaned_data.get('surname')
+         if form.cleaned_data.get('nickname'):
+            dbuser.nickname = form.cleaned_data.get('nickname')
+         if form.cleaned_data.get('bio'):
+            dbuser.bio = form.cleaned_data.get('bio')
+         dbuser.save()
+   if request.method == 'GET':
+      if verify_cookie(request):
+         dbuser = get_bloguser_ob(request)
+         return render(request,'SCE_Proj/template/setting_page.html',
+         {
+            'fullname':"{0} {1}".format(dbuser.name,dbuser.surname),
+            'firstname':dbuser.name,
+            'lastname':dbuser.surname,
+            'nickname':dbuser.nickname,
+            'bio':dbuser.bio
+         })
+      return redirect('login')

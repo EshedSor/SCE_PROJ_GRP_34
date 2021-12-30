@@ -12,6 +12,7 @@ class bloguser(models.Model):
     nickname = models.CharField(max_length = 20,default = '',null = True)
     email = models.EmailField(max_length = 50,unique = True)
     role = models.CharField(max_length = 10,default = 'registered',null = True)
+    bio = models.CharField(max_length=300,default = "",null = True)
     created = models.DateTimeField(auto_now_add = True)
     #picture = models.ImageField(default = None,upload_to=None, height_field=None, width_field=None, max_length=100)
     #created = models.DateTimeField(auto_now_add = False)
