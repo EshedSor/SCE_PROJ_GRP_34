@@ -21,7 +21,7 @@
                         <div class="img-circle text-center mb-3">
                             <img src="images/blank profile picture.png" alt="Image" class="shadow">
                         </div>
-                        <h4 class="text-center">Israel israeli</h4>
+                        <h4 class="text-center">{{fullname}}</h4>
                     </div>
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
@@ -63,19 +63,19 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input type="text" class="form-control" value="">
+                                    <input type="text" class="form-control" value="{{firstname}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" value="">
+                                    <input type="text" class="form-control" value="{{lastname}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" value="example@email.com">
+                                    <input type="text" class="form-control" value="{{email}}">
                                 </div>
                             </div>
                             <!--  DONT TOUCH! will be  deleted after final changes !!! --
@@ -90,7 +90,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>NickName</label>
-                                    <input type="text" class="form-control" value="">
+                                    <input type="text" class="form-control" value="{{nickname}}">
                                 </div>
                             </div>
                             <!--  DONT TOUCH! will be  deleted after final changes !!! --
