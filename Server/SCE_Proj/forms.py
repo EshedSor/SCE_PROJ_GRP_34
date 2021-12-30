@@ -6,7 +6,7 @@ from SCE_Proj.models import bloguser
 from django.contrib.auth.forms import UserCreationForm
 
 #login form
-class LoginForm(forms.Form):
+class loginForm(forms.Form):
     email = forms.EmailField(max_length = 50)
     password = forms.CharField(widget = forms.PasswordInput(),max_length =30)
     class Meta:

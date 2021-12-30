@@ -25,11 +25,11 @@ urlpatterns = [
     # admin console
     path('admin/', admin.site.urls),
     # default page
-    path('', SCE_Proj.views.default_redirect, name = "default_redirect"),
+    path('', SCE_Proj.views.LandingPage, name = "landingpage"),
     # landingpage
     path('landingpage/',SCE_Proj.views.LandingPage, name = "landingpage"),
     #login page
-    path('LogIn/',SCE_Proj.views.LogIn,name = "LogIn"),
+    path('login/',SCE_Proj.views.login,name = "login"),
     #homepage
     path('homepage/',SCE_Proj.views.homepage,name = 'homepage'),
     #register
