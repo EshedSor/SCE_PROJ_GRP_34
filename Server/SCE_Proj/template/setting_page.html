@@ -1,3 +1,4 @@
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
     <link rel="stylesheet" type="text/css"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="setting_page.css">
+    <link rel="stylesheet" type="text/css" href="{%static '/css/setting_page.css'%}">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
                 <div class="profile-tab-nav border-right">
                     <div class="p-4">
                         <div class="img-circle text-center mb-3">
-                            <img src="images/blank profile picture.png" alt="Image" class="shadow">
+                            <img src="{%static 'images/blank_profile_picture.png' %}" alt="Image" class="shadow">
                         </div>
                         <h4 class="text-center">{{fullname}}<br>{{email}}</h4>
                         
@@ -113,8 +114,13 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-primary">Update</button>
-                            <button class="btn btn-light">Cancel</button>
+                            <input class="btn btn-primary" type="submit" value="Update" name = "update_info" method = "POST" onclick="msg()">
+                            <script>
+                                function msg() {
+                                  alert("your details have been update");
+                                }
+                                </script>
+                            <input class="btn btn-light" type="reset" value="cancel">
                         </div>
                     </div>
                     <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">

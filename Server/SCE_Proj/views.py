@@ -153,15 +153,17 @@ def about_page(request):
 def settings_page(request):
    """the function returns the about page"""
    if request.method == 'POST':
-      form = settings_info()
+      #if 'update_info' in request.POST:
+      form = settings_info(request.POST)
       if(form.is_valid):
          dbuser = get_bloguser_ob(request)
-         if form.cleaned_data.get('name')!=None:
+         if form.cleaned_data.get('name')!=None:               
             dbuser.name = form.cleaned_data.get('name')
          if form.cleaned_data.get('surname'):
             dbuser.surname = form.cleaned_data.get('surname')
          if form.cleaned_data.get('nickname'):
             dbuser.nickname = form.cleaned_data.get('nickname')
+            return HttpResponse(form.cleaned_data.get('nickname'))
          if form.cleaned_data.get('bio'):
             dbuser.bio = form.cleaned_data.get('bio')
          dbuser.save()
