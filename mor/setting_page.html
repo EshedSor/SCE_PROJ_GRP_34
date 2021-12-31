@@ -113,8 +113,13 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-primary">Update</button>
-                            <button class="btn btn-light">Cancel</button>
+                            <input class="btn btn-primary" type="submit" value="Update" onclick="msg()">
+                            <script>
+                                function msg() {
+                                  alert("your details have been update");
+                                }
+                                </script>
+                            <input class="btn btn-light" type="reset" value="cancel">
                         </div>
                     </div>
                     <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
