@@ -17,6 +17,7 @@
         <div class="container">
             <h1 class="mb-5">Account Settings</h1>
             <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+                <form action="account" method="post">
                 <div class="profile-tab-nav border-right">
                     <div class="p-4">
                         <div class="img-circle text-center mb-3">
@@ -58,6 +59,8 @@
                         </a>
                     </div>
                 </div>
+            </form>
+            <form action="password" method="post">
                 <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
                         <h3 class="mb-4">Account Settings</h3>
@@ -123,6 +126,8 @@
                             <input class="btn btn-light" type="reset" value="cancel">
                         </div>
                     </div>
+                </form>
+                <form action="password" method="post">
                     <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                         <h3 class="mb-4">Password Settings</h3>
                         <div class="row">
@@ -213,6 +218,8 @@
                         </div>
                     </div>
                     -->
+                </form>
+                <form action="notification" method="post"></form>
                     <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
                         <h3 class="mb-4">Notification Settings</h3>
                         <div class="form-group">
@@ -245,7 +252,9 @@
                             <button class="btn btn-light">Cancel</button>
                         </div>
                     </div>
+                </form>
                 </div>
+
             </div>
         </div>
     </section>
