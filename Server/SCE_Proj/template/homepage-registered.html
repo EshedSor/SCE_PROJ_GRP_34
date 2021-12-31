@@ -19,11 +19,11 @@
          </div>
          <nav>
              <a href="#">Contact</a> |
-             <a href="#">About</a> |
-             <a href="#">become editor</a>|
+             <a href="http://explorair.link/about/">About</a> |
+             <a href="http://explorair.link/becomeeditor/">become editor</a>|
              <a href="#">Log out</a> |
              <a href="#"><i class="fas fa-search"></i></a>|
-             <a href="#"><i class="fas fa-user-cog"></i></a>|
+             <a href="http://explorair.link/settings/"><i class="fas fa-user-cog"></i></a>|
              <div class="tooltip">{{name}}
                 <span class="tooltiptext">
                   {{fullname}}
@@ -37,17 +37,17 @@
       <div class="slider owl-carousel">
          <div class="card">
             <div class="img">
-               <img src="images/brazil.jpg" alt="">
+               <img src="{%static 'images/rio.jpg' %}" alt="">
             </div>
             <div class="content">
                <div class="title">
-                  Brazil
+                  {{title1}}
                </div>
                <div class="sub-title">
-                  Rio De Janeiro
+                  {{editor_name1}}, {{date1}}
                </div>
                <p>
-                  Rio de Janeiro is home to some of the world’s friendliest people and most beautiful beaches. Brazil’s interracial history of Portuguese, Japanese, Indian, and German settlers has created a multicultural society, which has led to festivals and celebrations that are known all over the world
+                  {{post_text1}}
 
                </p>
                <div class="btn">
@@ -57,17 +57,17 @@
          </div>
          <div class="card">
             <div class="img">
-               <img src="images/peru.jpg" alt="">
+               <img src="{%static 'images/mexico.jpg' %}" alt="">
             </div>
             <div class="content">
                <div class="title">
-                  Peru
+                  {{title2}}
                </div>
                <div class="sub-title">
-                  Machu Picchu
+                  {{editor_name2}}, {{date2}}
                </div>
                <p>
-                  Machu Picchu, also spelled Machupijchu, site of ancient Inca ruins located about 50 miles (80 km) northwest of Cuzco, Peru, in the Cordillera de Vilcabamba of the Andes Mountains. It is perched above the Urubamba River valley in a narrow saddle between two sharp peaks—Machu Picchu (“Old Peak”) and Huayna Picchu (“New Peak”)—at an elevation of 7,710 feet (2,350 metres)
+                  {{post_text2}}
 
                </p>
                <div class="btn">
@@ -77,17 +77,17 @@
          </div>
          <div class="card">
             <div class="img">
-               <img src="images/paris.jpg" alt="">
+               <img src="{%static 'images/paris.jpg' %}" alt="">
             </div>
             <div class="content">
                <div class="title">
-                  France
+                  {{title3}}
                </div>
                <div class="sub-title">
-                  Paris
+                  {{editor_name3}}, {{date3}}
                </div>
                <p>
-                  Ah, Paree, so much to see, so little time. Frankly it’s ridiculous how many great sights there are here… but where to even start? Yeah, alright, probably the Eiffel Tower and the Louvre – but what the hell do you do next? Whether you’re a first-timer or a Paris regular, the same goes – how do you even go about planning a day out here?
+                  {{post_text3}}
 
                </p>
                <div class="btn">
