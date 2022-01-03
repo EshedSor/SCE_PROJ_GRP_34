@@ -179,7 +179,8 @@ def settings_page(request):
                         'firstname':dbuser.name,
                         'lastname':dbuser.surname,
                         'nickname':dbuser.nickname,
-                        'bio':dbuser.bio
+                        'bio':dbuser.bio,
+                        'email':dbuser.email,
                      })
          dbuser.save()
          return render(request,'SCE_Proj/template/setting_page.html',
@@ -188,7 +189,8 @@ def settings_page(request):
             'firstname':dbuser.name,
             'lastname':dbuser.surname,
             'nickname':dbuser.nickname,
-            'bio':dbuser.bio
+            'bio':dbuser.bio,
+            'email':dbuser.email,
          })
    if request.method == 'GET':
       if verify_cookie(request):
@@ -199,6 +201,23 @@ def settings_page(request):
             'firstname':dbuser.name,
             'lastname':dbuser.surname,
             'nickname':dbuser.nickname,
-            'bio':dbuser.bio
+            'bio':dbuser.bio,
+            'email':dbuser.email,
          })
       return redirect('login')
+#--------------------------------------------
+"""   Mor Bar 
+      3/JAN/22
+      return createpost page  """
+def createpost(request):
+   if request.method == 'GET':
+      if verify_cookie(request):
+         dbuser = get_bloguser_ob(request)
+         if(dbuser.role == 'editor'):
+            return render(request,"SCE_Proj/template/createpost.html")
+         else:
+            redirect('homepage')
+      else:
+         redirect('login')
+   elif request.method == 'POST':
+      pass
