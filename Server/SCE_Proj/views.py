@@ -157,7 +157,6 @@ def settings_page(request):
       #if 'update_info' in request.POST:
       form = settings_info(request.POST)
       if form.is_valid():
-         return HttpResponse(form.cleaned_data.get('name'))
          dbuser = get_bloguser_ob(request)
          if form.cleaned_data.get('name')!=None and form.cleaned_data.get('name')!="":               
             dbuser.name = form.cleaned_data.get('name')
@@ -167,9 +166,9 @@ def settings_page(request):
             dbuser.nickname = form.cleaned_data.get('nickname')
          if form.cleaned_data.get('bio') and form.cleaned_data.get('bio')!="":
             dbuser.bio = form.cleaned_data.get('bio')
-         if form.cleaned_data.get('old_pass') !=None and form.cleaned_data.get('old_pass')!="":
-            if(form.cleaned_data.get('old_pass')!= dbuser.password):
-               if(form.cleaned_data.get('password')!=None and form.cleaned_data.get('confirmpass')!= None)and form.cleaned_data.get('password')!=""and form.cleaned_data.get('confirmpass')!="":
+         if form.cleaned_data.get('old_pass') !=None:
+            if(form.cleaned_data.get('old_pass')== dbuser.password):
+               if(form.cleaned_data.get('password')!=None and form.cleaned_data.get('confirmpass')!= None):
                   if(form.cleaned_data.get('password') == form.cleaned_data.get('confirmpass')):
                      dbuser.password = form.cleaned_data.get('password')
                   else:
