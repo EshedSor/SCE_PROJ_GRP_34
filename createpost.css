@@ -41,6 +41,18 @@ button{
 button :hover{
     background:rgba(39, 39, 38, 0.247);
 }
+.btn{
+    padding: 0 32px;
+    font-weight: bold;
+    border-radius: 10px;
+    background:burlywood;
+    text-align: center;
+    padding: 4px 18px;
+    align-items: center;
+}
+.btn :hover{
+    background:rgba(39, 39, 38, 0.247);
+}
 .content .text{
     height: 180px;
     width: 100%;
@@ -48,4 +60,9 @@ button :hover{
 }.content .title{
     width: 100%;
     border-radius: 10px;
+}
+.btnn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
