@@ -1,4 +1,5 @@
 from django import http
+from django.http.request import HttpRequest
 from django.shortcuts import render,redirect, render
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
@@ -155,8 +156,9 @@ def settings_page(request):
    if request.method == 'POST':
       #if 'update_info' in request.POST:
       form = settings_info(request.POST)
-      if(form.is_valid):
+      if form.is_valid():
          dbuser = get_bloguser_ob(request)
+         return HttpResponse(form.cleaned_data.get('name'))
          if form.cleaned_data.get('name')!=None:               
             dbuser.name = form.cleaned_data.get('name')
          if form.cleaned_data.get('surname'):
@@ -167,6 +169,14 @@ def settings_page(request):
          if form.cleaned_data.get('bio'):
             dbuser.bio = form.cleaned_data.get('bio')
          dbuser.save()
+         return render(request,'SCE_Proj/template/setting_page.html',
+         {
+            'fullname':"{0} {1}".format(dbuser.name,dbuser.surname),
+            'firstname':dbuser.name,
+            'lastname':dbuser.surname,
+            'nickname':dbuser.nickname,
+            'bio':dbuser.bio
+         })
    if request.method == 'GET':
       if verify_cookie(request):
          dbuser = get_bloguser_ob(request)
