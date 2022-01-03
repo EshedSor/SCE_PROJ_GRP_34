@@ -59,4 +59,6 @@ class settings_info(forms.Form):
     surname = forms.CharField(max_length = 20,required=False)
     nickname = forms.CharField(max_length= 20,required = False)
     bio = forms.CharField(max_length=300,required = False)
-  
+    old_pass = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
+    password = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
+    confirmpass = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
