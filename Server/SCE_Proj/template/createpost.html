@@ -1,23 +1,24 @@
-{%load static%}
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'css/createpost.css' %}">
+    <link rel="stylesheet" href="{%static '/css/createpost.css'%}">
     <title>Document</title>
 </head>
 <body>
     <div class="content">
        <header>New post</header>
-       <form action="" method="post">
+       <form action="/createpost/" method="post">{% csrf_token %}
        <textarea name="title" placeholder="title" class="title"></textarea><br/>
-       <textarea name="post_body" placeholder="your text" class="text"></textarea><br/>
-       <div class="btnn">
+       <textarea name="tags" placeholder="tags" class="tags"></textarea><br/>
+       <textarea name="content" placeholder="your text" class="text"></textarea><br/>
+       <div class="btn">
         <button name="picture" class="picture">add pictures</button>
         <div>
-            <input class="btn" type="submit" value="Update" name = "update_info" method = "POST" onclick="msg()">
+            <input class="btnn" type="submit" value="Update" name = "create_post" method = "POST" onclick="msg()">
             <script>
                 function msg() {
                   alert("note - the post will be published after administrator approval");

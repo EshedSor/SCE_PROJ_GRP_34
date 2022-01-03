@@ -3,9 +3,9 @@ from django.http.request import HttpRequest
 from django.shortcuts import render,redirect, render
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
-from .forms import loginForm,RegisterForm,settings_info
+from .forms import loginForm,RegisterForm,settings_info,new_post
 from django.contrib import messages
-from SCE_Proj.models import bloguser
+from SCE_Proj.models import bloguser,Post
 import datetime
 from django.core.mail import send_mail
 
@@ -220,4 +220,24 @@ def createpost(request):
       else:
          redirect('login')
    elif request.method == 'POST':
-      pass
+      if verify_cookie(request):
+         dbuser = get_bloguser_ob(request)
+         if dbuser.role == 'editor':
+            form = new_post(request.POST)
+            form.is_valid()
+            if form.is_valid():
+               post = Post(
+                  title = form.cleaned_data.get('title'),
+                  tags = form.cleaned_data.get('tags'),
+                  content = form.cleaned_data.get('content'),
+                  owner = dbuser
+               )
+               post.save()
+               return redirect('homepage')
+            else:
+               form = new_post()
+               return render(request,"SCE_Proj/template/createpost.html")
+         else:
+            return redirect('homepage')
+      else:
+         return redirect('login')

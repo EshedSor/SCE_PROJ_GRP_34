@@ -62,4 +62,9 @@ class settings_info(forms.Form):
     old_pass = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
     password = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
     confirmpass = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
-    
+
+class new_post(forms.Form):
+    title = forms.CharField(max_length=30,required = True)
+    tags = forms.CharField(max_length=250,required = True)
+    content = forms.CharField(max_length = 1000,required = True)
+
