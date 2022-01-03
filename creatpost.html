@@ -10,10 +10,21 @@
 <body>
     <div class="content">
        <header>New post</header>
-       <textarea placeholder="title" class="title"></textarea><br/>
-       <textarea placeholder="your text" class="text"></textarea><br/>
-        <button class="picture">add pictures</button>
-        <button class="post"> Post </button><br/>
+       <form action="" method="post">
+       <textarea name="title" placeholder="title" class="title"></textarea><br/>
+       <textarea name="post_body" placeholder="your text" class="text"></textarea><br/>
+       <div class="btnn">
+        <button name="picture" class="picture">add pictures</button>
+        <div>
+            <input class="btn" type="submit" value="Update" name = "update_info" method = "POST" onclick="msg()">
+            <script>
+                function msg() {
+                  alert("note - the post will be published after administrator approval");
+                }
+                </script>
+        </div>
+    </div>
+    </form>
     </div>
 
     
