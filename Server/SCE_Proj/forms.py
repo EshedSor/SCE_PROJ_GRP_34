@@ -62,3 +62,4 @@ class settings_info(forms.Form):
     old_pass = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
     password = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
     confirmpass = forms.CharField(widget = forms.PasswordInput(),max_length = 30,required=False)
+    
