@@ -179,7 +179,8 @@ def settings_page(request):
                         'firstname':dbuser.name,
                         'lastname':dbuser.surname,
                         'nickname':dbuser.nickname,
-                        'bio':dbuser.bio
+                        'bio':dbuser.bio,
+                        'email':dbuser.email,
                      })
          dbuser.save()
          return render(request,'SCE_Proj/template/setting_page.html',
@@ -188,7 +189,8 @@ def settings_page(request):
             'firstname':dbuser.name,
             'lastname':dbuser.surname,
             'nickname':dbuser.nickname,
-            'bio':dbuser.bio
+            'bio':dbuser.bio,
+            'email':dbuser.email,
          })
    if request.method == 'GET':
       if verify_cookie(request):
@@ -199,6 +201,7 @@ def settings_page(request):
             'firstname':dbuser.name,
             'lastname':dbuser.surname,
             'nickname':dbuser.nickname,
-            'bio':dbuser.bio
+            'bio':dbuser.bio,
+            'email':dbuser.email,
          })
       return redirect('login')

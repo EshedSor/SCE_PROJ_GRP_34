@@ -22,8 +22,8 @@
                         <div class="img-circle text-center mb-3">
                             <img src="{%static 'images/blank_profile_picture.png' %}" alt="Image" class="shadow">
                         </div>
-                        <h4 class="text-center">{{fullname}}<br>{{email}}</h4>
-                        
+                        <h4 class="text-center">{{fullname}}</h4><br><h6>{{email}}
+                        </h6>
                     </div>
                 </div>
             <form action="/settings/" method="post">{% csrf_token%}
