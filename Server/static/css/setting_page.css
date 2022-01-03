@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 body {
-	background: url("images/background.jpg");
+	background: url("/static/images/background.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;

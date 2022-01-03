@@ -26,9 +26,9 @@ class Post(models.Model):
     content = models.TextField()
     tags = models.CharField(max_length = 250,default = None)
     #1 to many consisting of all the ratings
-    ratings = models.ForeignKey('Rating',default = 1,on_delete = models.CASCADE)
+    ratings = models.ForeignKey('Rating',default = None,on_delete = models.CASCADE,null = True)
     #1 to many consisting of all the comments of a certain post
-    comments = models.ForeignKey('Comment',default = None,on_delete=models.CASCADE)
+    comments = models.ForeignKey('Comment',default = None,on_delete=models.CASCADE,null = True)
     #1 to 1 relation for the post owner
     owner = models.OneToOneField('bloguser',default = None,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add = True)
