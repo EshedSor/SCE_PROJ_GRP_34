@@ -34,26 +34,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input type="text" class="form-control" value="{{firstname}}">
+                                    <input type="text" class="form-control" name="name" required placeholder="{{firstname}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" value="{{lastname}}">
+                                    <input type="text" class="form-control" name="surname" required placeholder="{{lastname}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>NickName</label>
-                                    <input type="text" class="form-control" value="{{nickname}}">
+                                    <input type="text" class="form-control" name="nickname" required placeholder="{{nickname}}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Bio</label>
-                                    <textarea class="form-control"
-                                        rows="4">{{bio}}</textarea>
+                                    <textarea class="form-control" name="bio" rows="4" required placeholder="{{bio}}"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +63,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Old password</label>
-                                    <input type="password" class="form-control">
+                                    <input type="password" name="old_pass" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -72,13 +71,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>New password</label>
-                                    <input type="password" class="form-control">
+                                    <input type="password" name="password" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Confirm new password</label>
-                                    <input type="password" class="form-control">
+                                    <input type="password" name="confirmpass" class="form-control">
                                 </div>
                             </div>
                         </div>
