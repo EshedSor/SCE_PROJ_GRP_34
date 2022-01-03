@@ -205,3 +205,19 @@ def settings_page(request):
             'email':dbuser.email,
          })
       return redirect('login')
+#--------------------------------------------
+"""   Mor Bar 
+      3/JAN/22
+      return createpost page  """
+def createpost(request):
+   if request.method == 'GET':
+      if verify_cookie(request):
+         dbuser = get_bloguser_ob(request)
+         if(dbuser.role == 'editor'):
+            return render(request,"SCE_Proj/template/createpost.html")
+         else:
+            redirect('homepage')
+      else:
+         redirect('login')
+   elif request.method == 'POST':
+      pass

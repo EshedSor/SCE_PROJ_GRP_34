@@ -38,6 +38,8 @@ urlpatterns = [
     path('settings/',SCE_Proj.views.settings_page,name = 'settings_page'),
     #register
     path('about/',SCE_Proj.views.about_page,name = 'about_page'),
+    #createpost
+    path('createpost/',SCE_Proj.views.createpost,name = 'createpost'),
     #ajax
    # url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls'))
 ]
