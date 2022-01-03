@@ -54,7 +54,7 @@ font-family: sans-serif;
 
 }
 .slider{
-  max-width: 1100px;
+  max-width: 1000px;
   display: flex;
 }
 .slider .card{
@@ -107,50 +107,26 @@ font-family: sans-serif;
 .card .content .btn button:hover{
   transform: scale(0.9);
 }
-
-/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
+  .sidenav {
+    width: 8%;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    background: rgba(236, 222, 203, 0.664);
+    overflow-x: hidden;
+    padding: 8px 0;
   }
   
-  /* Tooltip text */
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: rgb(78, 78, 78);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
   
-    /* Position the tooltip text */
-    position: absolute;
-    z-index: 1000;
-    bottom: -350%;
-    left: 50%;
-    margin-left: -60px;
-  
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
+  .main {
+    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
   }
   
-  /* Tooltip arrow */
-  .tooltip .tooltiptext::after {
-   content: " ";
-  position: absolute;
-  bottom: 100%;  /* At the top of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent rgb(78, 78, 78) transparent;
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
   }
-  
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
-  
+ 
