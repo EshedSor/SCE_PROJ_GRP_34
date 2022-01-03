@@ -91,7 +91,7 @@ def homepage(request):
       dbuser = get_bloguser_ob(request)
       dbrole = dbuser.role
       path = path.replace("XXX",dbrole)
-      response = render(request,path,{"fullsname":"{0} {1}".format(dbuser.name,dbuser.surname),
+      response = render(request,path,{"fullname":"{0} {1}".format(dbuser.name,dbuser.surname),
                                             "nickname":dbuser.nickname,
                                             "role":dbrole})
       
@@ -241,3 +241,22 @@ def createpost(request):
             return redirect('homepage')
       else:
          return redirect('login')
+#--------------------------------------------
+"""   Eshed Sorotsky 
+      3/JAN/22
+      return logout page  """
+def logout(request):
+   if request.method == 'GET':
+      if verify_cookie(request):
+         return render(request,"SCE_Proj/template/log_out.html")
+      else:
+         return redirect('landingpage')
+   elif request.method == 'POST':
+      if verify_cookie(request):
+         if 'logout' in request.POST:
+            response = redirect('landingpage')
+            response.delete_cookie('email')
+            response.delete_cookie('last_connection')
+            return response
+      else:
+         return redirect('landingpage')
