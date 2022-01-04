@@ -1,4 +1,4 @@
-ag{% load static%}
+{% load static%}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>
@@ -14,8 +14,8 @@ ag{% load static%}
                Are you sure you want to log out?
             </h4>
             <div class="btns">
-               <a href="http://explorair.link./homepage/">No, return home</a>
-               <input type="submit" class="logout" name="logout" value="Yes">
+               <a href="http://explorair.link/homepage/">No, return home</a>
+               <input type="submit" class="logout" name="logout" value="Yes">{% csrf_token %}
             </div>
          </div>
       </div>
