@@ -91,9 +91,11 @@ def homepage(request):
       dbuser = get_bloguser_ob(request)
       dbrole = dbuser.role
       path = path.replace("XXX",dbrole)
-      response = render(request,path,{"fullname":"{0} {1}".format(dbuser.name,dbuser.surname),
-                                            "nickname":dbuser.nickname,
-                                            "role":dbrole})
+      response = render(request,path,{    "name":dbuser.name,
+                                          "surname":dbuser.surname,
+                                          "email":dbuser.email,
+                                          "nickname":dbuser.nickname,
+                                          "role":dbrole})
       
       return response
    else:
