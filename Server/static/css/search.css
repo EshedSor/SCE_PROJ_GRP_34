@@ -121,6 +121,24 @@ body {
 .row section .bottom a:hover{
   transform: scale(0.97);
 }
+
+.navigation {
+  margin: center;
+  padding-left: 600px;
+}
+
+.nav-btn{
+  margin: 40px;
+  text-decoration: none;
+  background: #ff7979;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 5px;
+  /* font-size: 17px; */
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
 @media(max-width: 790px){
   .wrapper .center-line{
     left: 40px;
