@@ -93,7 +93,7 @@ font-family: sans-serif;
   text-align: left;
   margin: 10px 0;
 }
-.card .content .btn button{
+.card .content .btn a{
   background: #e74c3c;
   color: #fff;
   border: none;
@@ -104,7 +104,7 @@ font-family: sans-serif;
   cursor: pointer;
   transition: 0.2s;
 }
-.card .content .btn button:hover{
+.card .content .btn a:hover{
   transform: scale(0.9);
 }
 

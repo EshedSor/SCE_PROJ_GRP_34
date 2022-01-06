@@ -15,7 +15,6 @@ class bloguser(models.Model):
     bio = models.CharField(max_length=300,default = "",null = True)
     created = models.DateTimeField(auto_now_add = True)
     #picture = models.ImageField(default = None,upload_to=None, height_field=None, width_field=None, max_length=100)
-    #created = models.DateTimeField(auto_now_add = False)
 
     class Meta:
         db_table = "bloguser"
@@ -30,17 +29,17 @@ class Post(models.Model):
     #1 to many consisting of all the comments of a certain post
     comments = models.ForeignKey('Comment',default = None,on_delete=models.CASCADE,null = True)
     #1 to 1 relation for the post owner
-    owner = models.OneToOneField('bloguser',default = None,on_delete=models.CASCADE)
+    owner = models.ForeignKey('bloguser',default = None,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add = True)
     class Meta:
-        db_table = "Post"
+        db_table = "post"
 
 #comments class
 class Comment(models.Model):
     title = models.CharField(max_length = 30)
     content = models.TextField(max_length = 100)
     #1 to 1 relation for the comment owner
-    owner = models.OneToOneField('bloguser',default = None,on_delete=models.CASCADE)
+    owner = models.ForeignKey('bloguser',default = None,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add = True)
     class Meta:
         db_table = "Comment"
