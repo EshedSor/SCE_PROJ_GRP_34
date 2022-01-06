@@ -3,7 +3,7 @@ from django.http.request import HttpRequest
 from django.shortcuts import render,redirect, render
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
-from .forms import loginForm,RegisterForm,settings_info,new_post,search_form,become_editor_form
+from .forms import loginForm,RegisterForm,settings_info,new_post,search_form,become_editor_form,confirm_editor_form
 from django.contrib import messages
 from SCE_Proj.models import bloguser,Post,become_editor_model
 import datetime
@@ -22,6 +22,21 @@ def search_feature(search_tags,x):
       if i in x.tags:
          check = True
    return check
+
+#--------------------------------------------
+""" Achva  
+      6/JAN/22
+      return editor request dict  """
+def editor_req_dict(request):
+   queryset = become_editor_model.objects.order_by('-id')[:5]
+   dictionary = {}
+   for i in range(queryset.count()):
+      dbuser = bloguser.objects.get(id=queryset[i].requested_by_id)
+      dictionary['Username{0}'.format(i+1)] = dbuser.nickname
+      dictionary['Firstname{0}'.format(i+1)] = dbuser.name
+      dictionary["Lastname{0}".format(i+1)] = dbuser.surname
+      dictionary['email{0}'.format(i+1)] = dbuser.email
+   return dictionary
 
 #--------------------------------------------
 """ Eshed Sorosky 
@@ -362,7 +377,7 @@ def become_editor(request):
       return redirect('login')
 
 #--------------------------------------------
-"""   Eshed Sorotsky 
+"""   Achva  
       6/JAN/22
       return become editor page  """
 def confirm_editor(request):
@@ -373,8 +388,28 @@ def confirm_editor(request):
          return redirect('homepage')
       else:
          if request.method == "GET":
-            return render(request,path)
+            response_dict = editor_req_dict(request)
+            return render(request,path,response_dict)
          elif request.method == 'POST':
-            pass
+            form = confirm_editor_form(request.POST)
+            if 'accept' in request.POST:
+               if form.is_valid():
+                  request_user = bloguser.objects.get(email = form.cleaned_data.get('email'))
+                  request_user.role = 'editor'
+                  request_user.save()
+                  become_editor_obj = become_editor_model.objects.get(requested_by_id = request_user.id).delete()
+                  return render(request,path,editor_req_dict(request))
+               else:
+                  form = confirm_editor_form()
+                  return render(request,path,editor_req_dict(request))
+            elif 'reject' in request.POST:
+               if form.is_valid():
+                  request_user = bloguser.objects.get(email = form.cleaned_data.get('email'))
+                  become_editor_obj = become_editor_model.objects.get(requested_by_id = request_user.id).delete()
+                  return render(request,path,editor_req_dict(request))
+               else:
+                  form = confirm_editor_form()
+                  return render(request,path,editor_req_dict(request))
    else:
       return redirect('login')
+      
