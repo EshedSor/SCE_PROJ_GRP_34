@@ -158,22 +158,15 @@ def homepage(request):
 """   Eshed Sorosky 
       6/JAN/22
       return search page """
-def search_view(request,form):
+def search_view(request):
    path = "SCE_Proj/template/search.html"
-   search_string = form.cleaned_data.get('search_string')
-   if "search" in request.POST:
-      if 'page' not in request.COOKIES or request.COOKIES.get('page') != 0:
-         post_list = get_post_list(request,0,"search",search_string)
-         response_dict = create_post_dict(request,post_list)
-         response = render(request,path,response_dict)
-         response.set_cookie('page',0)
-         return response
-   elif 'next_page' in request.POST:
-      post_list = get_post_list(request,request.COOKIES.get('page')+1,"search",search_string)
-      response_dict = create_post_dict(request,post_list)
-      response = render(request,path,response_dict)
-      response.set_cookie('page',request.COOKIES.get('page')+1)
+   if request.method == 'GET':
+      response = render(request,path)
+      response.set_cookie('page',0)
       return response
+   elif request.method == 'POST':
+      if 'search' in request.POST:
+         pass
 
 
 #--------------------------------------------
