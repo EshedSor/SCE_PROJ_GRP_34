@@ -9,10 +9,18 @@ html{
   scroll-behavior: smooth;
 }
 .container{
-  max-width: 2000px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 16px 16px;
-  width: 100%;
+  align-items: center;
+  position: relative;
+}
+.container nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  left: 150px;
+  
 }
 header{
   margin-right: 30px;
@@ -49,6 +57,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
+    width: 100%;
 	font-family: "Roboto", sans-serif;
 }
 ::selection{
