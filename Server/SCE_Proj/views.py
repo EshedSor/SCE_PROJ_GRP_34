@@ -10,10 +10,51 @@ import datetime
 from django.core.mail import send_mail
 
 COOKIE_TIMEOUT = 600
+#
 #--------------------------------------------
 """ Eshed Sorosky 
       7/DEC/21
-      return regsiter page  """
+      return search filter  """
+def search_feature(search_tags,x):
+   search_tags = search_tags.split(" ")
+   check = False
+   for i in search_tags:
+      if i in x.tags:
+         check = True
+   return check
+
+#--------------------------------------------
+""" Eshed Sorosky 
+      7/DEC/21
+      return list of posts page  """
+def get_post_list(request,filter_tag,search_tags):
+   """amount - how many posts returned
+      filter - what filter to apply"""
+   if filter_tag == "order by date":
+      post_list = Post.objects.order_by('-created')
+      post_list = list(filter(search_feature,post_list))
+      post_list = post_list[request.COOKIES.get('search')*5:((int)(request.COOKIES.get('search'))+1)*5]
+   elif  filter_tag == "homepage":
+      post_list = Post.objects.order_by('-created')[:3]
+   return post_list
+#--------------------------------------------
+""" Eshed Sorosky 
+      7/DEC/21
+      return list of posts page  """
+def create_post_dict(request,post_list):
+   dictionary = {}
+   for i in range(len(post_list)):
+      owner = bloguser.objects.get(id=post_list[i].owner_id)
+      dictionary["title{0}".format(i+1)]=post_list[i].title
+      dictionary["editor_name{0}".format(i+1)]= "{0} {1}".format(owner.name,owner.surname)
+      dictionary["date{0}".format(i+1)]=post_list[i].created
+      dictionary["post_text{0}".format(i+1)]=post_list[i].content
+   return dictionary
+   
+#--------------------------------------------
+""" Eshed Sorosky 
+      7/DEC/21
+      return bloguser object page  """
 def get_bloguser_ob(request):
    """the function returns a blogspot user from the database using cookies"""
    email = request.COOKIES.get('email')
@@ -86,21 +127,28 @@ def login(request):
       28/Nov/21
       return login """
 def homepage(request):
-   path = "SCE_Proj/template/homepage-XXX.html"
-   if verify_cookie(request):
-      dbuser = get_bloguser_ob(request)
-      dbrole = dbuser.role
-      path = path.replace("XXX",dbrole)
-      response = render(request,path,{    "name":dbuser.name,
-                                          "surname":dbuser.surname,
-                                          "email":dbuser.email,
-                                          "nickname":dbuser.nickname,
-                                          "role":dbrole})
-      
-      return response
-   else:
-      path = path.replace("XXX","guest")
-   return render(request,path)
+   if request.method == 'GET':
+      path = "SCE_Proj/template/homepage-XXX.html"
+      post_list = get_post_list(request,"homepage","")
+      if verify_cookie(request):
+         dbuser = get_bloguser_ob(request)
+         dbrole = dbuser.role
+         path = path.replace("XXX",dbrole)
+         response_dict = {    #for showing user data
+                                                "name":dbuser.name,
+                                                "surname":dbuser.surname,
+                                                "email":dbuser.email,
+                                                "nickname":dbuser.nickname,
+                                                "role":dbrole}
+         response_dict.update(create_post_dict(request,post_list))
+         response = render(request,path,response_dict)
+         return response
+      else:
+         response_dict = create_post_dict(request,post_list)
+         path = path.replace("XXX","guest")
+      return render(request,path,response_dict)
+   elif request.method == 'POST':
+      return HttpResponse("temp")
 
 #--------------------------------------------
 """   Eshed Sorosky 
