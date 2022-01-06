@@ -73,3 +73,6 @@ class search_form(forms.Form):
 
 class become_editor_form(forms.Form):
     content = forms.CharField(max_length=300,required=False)
+
+class confirm_editor_form(forms.Form):
+    email = forms.EmailField(max_length = 50,required= True)
