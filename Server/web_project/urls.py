@@ -44,6 +44,8 @@ urlpatterns = [
     path('log_out/',SCE_Proj.views.logout,name = 'log_out'),
     #search page
     path('search/',SCE_Proj.views.search_view,name = 'search'),
+    #become_editor page
+    path('become_editor/',SCE_Proj.views.become_editor,name = 'become_editor'),
     #ajax
    # url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls'))
 ]
