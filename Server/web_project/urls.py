@@ -46,6 +46,8 @@ urlpatterns = [
     path('search/',SCE_Proj.views.search_view,name = 'search'),
     #become_editor page
     path('become_editor/',SCE_Proj.views.become_editor,name = 'become_editor'),
+    #become_editor page
+    path('confirm_editor/',SCE_Proj.views.confirm_editor,name = 'confirm_editor'),
     #ajax
    # url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls'))
 ]

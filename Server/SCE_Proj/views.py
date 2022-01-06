@@ -360,3 +360,21 @@ def become_editor(request):
             return redirect('homepage')
    else:
       return redirect('login')
+
+#--------------------------------------------
+"""   Eshed Sorotsky 
+      6/JAN/22
+      return become editor page  """
+def confirm_editor(request):
+   path = "SCE_Proj/template/confirm_editor.html"
+   if verify_cookie(request):
+      dbuser = get_bloguser_ob(request)
+      if dbuser.role != 'admin':
+         return redirect('homepage')
+      else:
+         if request.method == "GET":
+            return render(request,path)
+         elif request.method == 'POST':
+            pass
+   else:
+      return redirect('login')
