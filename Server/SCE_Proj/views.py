@@ -340,14 +340,15 @@ def become_editor(request):
       if dbuser.role != 'registered':
          return redirect('homepage')
       else:
-         if request.method == 'GET':
-            return render(request,path)
-         elif request.method == 'POST':
-            if len(become_editor_model.objects.filter(requested_by_id = dbuser.id)) == 0:
+         request_list = become_editor_model.objects.filter(requested_by_id = dbuser.id)
+         if request_list.count() == 0:
+            if request.method == 'GET':
+               return render(request,path)
+            elif request.method == 'POST':
                form = become_editor_form(request.POST)
                if form.is_valid():
                   new_editor_req = become_editor_model(  requested_by = dbuser,
-                                                         contect = form.cleaned_data.get('content'))
+                                                         content = form.cleaned_data.get('content'))
                   new_editor_req.save()
                   return redirect('homepage')
                else:
@@ -355,5 +356,7 @@ def become_editor(request):
                   return render(request,path)
             else:
                return redirect('homepage')
+         else:
+            return redirect('homepage')
    else:
       return redirect('login')
