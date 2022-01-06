@@ -37,73 +37,63 @@
         </thead>
 
         <tbody>
-            <form action="" method="post"><!--************-->
+            <form action="/confirm_editor/" method="post">{% csrf_token %}<!--************-->
             <tr>
                 <td>{{Username1}}</td>
-                <td><input type="email" name="email" placeholder="{{email1}}"></td>
+                <td><input type="email" name="email" value="{{email1}}"></td>
                 <td>{{Firstname1}}</td>
                 <td>{{Lastname1}}</td>
                 <td>
-                    <form method="POST">
-                        <input class="request-btn-v" type="submit" name="accept1" id="accept1" value="Approve">
-                        <input class="request-btn-x" type="submit" name="reject1" id="decline1" value="Reject">
-                    </form>
+                        <input class="request-btn-v" type="submit" name="accept" id="accept1" value="Approve">
+                        <input class="request-btn-x" type="submit" name="reject" id="decline1" value="Reject">
                 </td>
             </tr>
         </form>
-        <form action="" method="post">
+        <form action="/confirm_editor/" method="post">{% csrf_token %}
             <tr>
                 <td>{{Username2}}</td>
-                <td><input type="email" name="email" placeholder="{{email2}}"></td>
+                <td><input type="email" name="email" value="{{email2}}"></td>
                 <td>{{Firstname2}}</td>
                 <td>{{Lastname2}}</td>
                 <td>
-                    <form method="POST">
-                        <input class="request-btn-v" type="submit" name="accept2" id="accept2" value="Approve">
-                        <input class="request-btn-x" type="submit" name="reject2" id="decline2" value="Reject">
-                    </form>
+                        <input class="request-btn-v" type="submit" name="accept" id="accept2" value="Approve">
+                        <input class="request-btn-x" type="submit" name="reject" id="decline2" value="Reject">
                 </td>
             </tr>
         </form>
-        <form action="" method="post">
+        <form action="/confirm_editor/" method="post">{% csrf_token %}
         <tr>
                 <td>{{Username3}}</td>
-                <td><input type="email" name="email" placeholder="{{email3}}"></td>
+                <td><input type="email" name="email" value="{{email3}}"></td>
                 <td>{{Firstname3}}</td>
                 <td>{{Lastname3}}</td>
                 <td>
-                    <form method="POST">
-                        <input class="request-btn-v" type="submit" name="accept3" id="accept3" value="Approve">
-                        <input class="request-btn-x" type="submit" name="reject3" id="decline3" value="Reject">
-                    </form>
+                        <input class="request-btn-v" type="submit" name="accept" id="accept3" value="Approve">
+                        <input class="request-btn-x" type="submit" name="reject" id="decline3" value="Reject">
                 </td>
             </tr>
         </form>
-        <form action="" method="post">
+        <form action="/confirm_editor/" method="post">{% csrf_token %}
             <tr>
                 <td>{{Username4}}</td>
-                <td><input type="email" name="email" placeholder="{{email3}}"></td>
+                <td><input type="email" name="email" value="{{email3}}"></td>
                 <td>{{Firstname4}}</td>
                 <td>{{Lastname4}}</td>
                 <td>
-                    <form method="POST">
-                        <input class="request-btn-v" type="submit" name="accept4" id="accept4" value="Approve">
-                        <input class="request-btn-x" type="submit" name="reject4" id="decline4" value="Reject">
-                    </form>
+                        <input class="request-btn-v" type="submit" name="accept" id="accept4" value="Approve">
+                        <input class="request-btn-x" type="submit" name="reject" id="decline4" value="Reject">
                 </td>
             </tr>
         </form>
-        <form action="" method="post">
+        <form action="/confirm_editor/" method="post">{% csrf_token %}
             <tr>
                 <td>{{Username5}}</td>
-                <td><input type="email" name="email" placeholder="{{email3}}"></td>
+                <td><input type="email" name="email" value="{{email3}}"></td>
                 <td>{{Firstname5}}</td>
                 <td>{{Lastname5}}</td>
                 <td>
-                    <form method="POST">
-                        <input class="request-btn-v" type="submit" name="accept5" id="accept5" value="Approve">
-                        <input class="request-btn-x" type="submit" name="reject5" id="decline5" value="Reject">
-                    </form>
+                        <input class="request-btn-v" type="submit" name="accept" id="accept5" value="Approve">
+                        <input class="request-btn-x" type="submit" name="reject" id="decline5" value="Reject">
                 </td>
             </tr>
         </form>
