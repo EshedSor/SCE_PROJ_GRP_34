@@ -329,3 +329,20 @@ def logout(request):
             return response
       else:
          return redirect('landingpage')
+#--------------------------------------------
+"""   Eshed Sorotsky 
+      6/JAN/22
+      return become editor page  """
+def become_editor(request):
+   path = "SCE_Proj/template/become_editor.html"
+   if verify_cookie(request):
+      dbuser = get_bloguser_ob(request)
+      if dbuser.role != 'registered':
+         return redirect('homepage')
+      else:
+         if request.method == 'GET':
+            return render(request,path)
+         elif request.method == 'POST':
+            return HttpResponse('temp')       
+   else:
+      return redirect('login')
