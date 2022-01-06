@@ -125,6 +125,12 @@ class ViewsTestCase(TestCase):
         request = self.factory.get("/confirm_editor/")
         response = confirm_editor(request)
         self.assertEqual(response.status_code,302)
+    def test_createpost_view(self):
+        #self.factory = RequestFactory()
+        #creating a get request
+        request = self.factory.get("/createpost/")
+        response = createpost(request)
+        self.assertEqual(response.status_code,302)
 
 
     
