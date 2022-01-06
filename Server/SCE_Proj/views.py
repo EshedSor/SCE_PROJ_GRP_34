@@ -3,7 +3,7 @@ from django.http.request import HttpRequest
 from django.shortcuts import render,redirect, render
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
-from .forms import loginForm,RegisterForm,settings_info,new_post
+from .forms import loginForm,RegisterForm,settings_info,new_post,search_form
 from django.contrib import messages
 from SCE_Proj.models import bloguser,Post
 import datetime
@@ -27,13 +27,13 @@ def search_feature(search_tags,x):
 """ Eshed Sorosky 
       7/DEC/21
       return list of posts page  """
-def get_post_list(request,filter_tag,search_tags):
+def get_post_list(request,page,filter_tag,search_tags):
    """amount - how many posts returned
       filter - what filter to apply"""
-   if filter_tag == "order by date":
+   if filter_tag == "search":
       post_list = Post.objects.order_by('-created')
       post_list = list(filter(search_feature,post_list))
-      post_list = post_list[request.COOKIES.get('search')*5:((int)(request.COOKIES.get('search'))+1)*5]
+      post_list = post_list[page*5:(page+1)*5]
    elif  filter_tag == "homepage":
       post_list = Post.objects.order_by('-created')[:3]
    return post_list
@@ -129,7 +129,7 @@ def login(request):
 def homepage(request):
    if request.method == 'GET':
       path = "SCE_Proj/template/homepage-XXX.html"
-      post_list = get_post_list(request,"homepage","")
+      post_list = get_post_list(request,0,"homepage","")
       if verify_cookie(request):
          dbuser = get_bloguser_ob(request)
          dbrole = dbuser.role
@@ -148,7 +148,33 @@ def homepage(request):
          path = path.replace("XXX","guest")
       return render(request,path,response_dict)
    elif request.method == 'POST':
-      return HttpResponse("temp")
+      form = search_form(request.POST)
+      if form.is_valid():
+        return search_view(request,form)
+      else:
+         form = search_form()
+         return redirect('homepage')
+#--------------------------------------------
+"""   Eshed Sorosky 
+      6/JAN/22
+      return search page """
+def search_view(request,form):
+   path = "SCE_Proj/template/search.html"
+   search_string = form.cleaned_data.get('search_string')
+   if "search" in request.POST:
+      if 'page' not in request.COOKIES or request.COOKIES.get('page') != 0:
+         post_list = get_post_list(request,0,"search",search_string)
+         response_dict = create_post_dict(request,post_list)
+         response = render(request,path,response_dict)
+         response.set_cookie('page',0)
+         return response
+   elif 'next_page' in request.POST:
+      post_list = get_post_list(request,request.COOKIES.get('page')+1,"search",search_string)
+      response_dict = create_post_dict(request,post_list)
+      response = render(request,path,response_dict)
+      response.set_cookie('page',request.COOKIES.get('page')+1)
+      return response
+
 
 #--------------------------------------------
 """   Eshed Sorosky 

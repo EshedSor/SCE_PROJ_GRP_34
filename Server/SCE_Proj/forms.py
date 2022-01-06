@@ -68,3 +68,6 @@ class new_post(forms.Form):
     tags = forms.CharField(max_length=250,required = True)
     content = forms.CharField(max_length = 1000,required = True)
 
+class search_form(forms.Form):
+    search_string = forms.CharField(max_length=20,required = True)
+
