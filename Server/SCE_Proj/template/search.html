@@ -6,25 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Posts</title>
-    <link rel="stylesheet" type="text/css" href="{%static '/css/search.css'%}">
+    <link rel="stylesheet" href="search.css">
+    <!--<link rel="stylesheet" type="text/css" href="{%static '/css/search.css'%}">-->
+    <script src="https://kit.fontawesome.com/85adb81827.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header class="container-fluid">
         <div class="container">
-        <div class ="logo">
-            <h2>ExplorAir</h2>
-              </div>
-                 <nav>
-                    <form action = "/homepage/" method="POST">{% csrf_token %}
-                        <input type="text" placeholder="Search..">
-                        <button type="submit" name = "search"></form><i class="fa fa-search"></i></button>||
-                 <a href="http://explorair.link/settings/"><i class="fas fa-user-cog"></i></a>|
-           </nav>                
+            <div class ="logo">
+                <h2>ExplorAir</h2>
+            </div>
+            <nav>
+                <form action = "/homepage/" method="POST">{% csrf_token %}
+                    <input type="text" placeholder="Search..">
+                <button type="submit" name = "search"></form><i class="fa fa-search"></i></button> |
+                <a href="http://explorair.link/settings/"><i class="fas fa-user-cog"></i></a> |
+            </nav>
         </div>
-     </header>
+    </header>
     <div class="wrapper">
-        
         <div class="row row-1">
             <section>
                 <i class="icon fas fa-home"></i>

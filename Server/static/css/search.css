@@ -29,6 +29,9 @@ header .container{
   justify-content: space-between;
   align-items: center;
 }
+header nav{
+  padding-right: 600px;
+}
 header nav a{
   color: brown;
   text-decoration: none;
