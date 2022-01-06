@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields.related import ForeignKey
 
 # Create your models here.
 #   Created by Eshed Sorotsky
@@ -50,3 +51,10 @@ class Rating(models.Model):
     #created = models.DateTimeField(auto_now_add = False)
     class Meta:
         db_table = "Rating"
+
+#become editor requests
+class become_editor_model(models.Model):
+    requested_by = models.ForeignKey('bloguser',default = None,on_delete = models.CASCADE,null = True)
+    content = models.CharField(max_length=300,default = None)
+    class Meta:
+        db_table = "become_editor_model"

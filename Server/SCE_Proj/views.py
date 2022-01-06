@@ -3,9 +3,9 @@ from django.http.request import HttpRequest
 from django.shortcuts import render,redirect, render
 from django.shortcuts import HttpResponse
 from django.template import RequestContext
-from .forms import loginForm,RegisterForm,settings_info,new_post,search_form
+from .forms import loginForm,RegisterForm,settings_info,new_post,search_form,become_editor_form
 from django.contrib import messages
-from SCE_Proj.models import bloguser,Post
+from SCE_Proj.models import bloguser,Post,become_editor_model
 import datetime
 from django.core.mail import send_mail
 
@@ -343,6 +343,17 @@ def become_editor(request):
          if request.method == 'GET':
             return render(request,path)
          elif request.method == 'POST':
-            return HttpResponse('temp')       
+            if len(become_editor_model.objects.filter(requested_by_id = dbuser.id)) == 0:
+               form = become_editor_form(request.POST)
+               if form.is_valid():
+                  new_editor_req = become_editor_model(  requested_by = dbuser,
+                                                         contect = form.cleaned_data.get('content'))
+                  new_editor_req.save()
+                  return redirect('homepage')
+               else:
+                  form = become_editor_model()
+                  return render(request,path)
+            else:
+               return redirect('homepage')
    else:
       return redirect('login')
