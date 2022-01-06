@@ -168,6 +168,9 @@ body {
 .navigation {
   margin: center;
   padding-left: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-btn{
