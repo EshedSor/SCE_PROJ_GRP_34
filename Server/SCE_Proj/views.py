@@ -285,9 +285,9 @@ def createpost(request):
          if(dbuser.role == 'editor'):
             return render(request,"SCE_Proj/template/createpost.html")
          else:
-            redirect('homepage')
+            return redirect('homepage')
       else:
-         redirect('login')
+         return redirect('login')
    elif request.method == 'POST':
       if verify_cookie(request):
          dbuser = get_bloguser_ob(request)
@@ -429,7 +429,7 @@ def search_view(request):
          response.set_cookie('search_string',request.COOKIES.get('search_string'))
          response.set_cookie('page',page)
          return response
-      elif 'prev' in request.POST:
+      elif 'prev'in request.POST :
          page = int(request.COOKIES.get('page')) - 1
          if page<0:
             page = 0
