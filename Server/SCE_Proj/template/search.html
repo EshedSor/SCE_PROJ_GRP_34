@@ -17,8 +17,8 @@
                 <h2>ExplorAir</h2>
             </div>
             <nav>
-                <form action = "/homepage/" method="POST">{% csrf_token %}
-                    <input type="text" placeholder="Search..">
+                <form action = "/search/" method="POST">{% csrf_token %}
+                    <input type="text" name = "search_string" placeholder="Search..">
                 <button type="submit" name = "search"></form><i class="fa fa-search"></i></button> |
                 <a href="http://explorair.link/settings/"><i class="fas fa-user-cog"></i></a> |
             </nav>
@@ -94,8 +94,12 @@
     </div>
 
     <div class="navigation">
-        <input class="nav-btn" type="submit" value="Prev">
-        <input class="nav-btn" type="submit" value="Next">
+        <form action = "/search/" method = "post">{% csrf_token %}
+        <input class="nav-btn" type="submit" name = 'next' value="Next">    </form>
+        <form action = "/search/" method = "post">{% csrf_token %}
+        <input class="nav-btn" type="submit" name = 'prev' value="Prev">
+    </form>
+
         
     </div>
 </body>

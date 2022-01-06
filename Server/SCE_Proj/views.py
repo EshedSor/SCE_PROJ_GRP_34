@@ -15,7 +15,7 @@ COOKIE_TIMEOUT = 600
 """ Eshed Sorosky 
       7/DEC/21
       return search filter  """
-def search_feature(search_tags,x):
+def search_feature(x,search_tags):
    search_tags = search_tags.split(" ")
    check = False
    for i in search_tags:
@@ -46,8 +46,9 @@ def get_post_list(request,page,filter_tag,search_tags):
    """amount - how many posts returned
       filter - what filter to apply"""
    if filter_tag == "search":
-      post_list = Post.objects.order_by('-created')
-      post_list = list(filter(search_feature,post_list))
+      #post_list = Post.objects.order_by('-created')[:5]
+      post_list = Post.objects.all().order_by('-created')
+      post_list = list(filter(lambda x:search_feature(x,search_tags),post_list))
       post_list = post_list[page*5:(page+1)*5]
    elif  filter_tag == "homepage":
       post_list = Post.objects.order_by('-created')[:3]
@@ -171,21 +172,6 @@ def homepage(request):
          return redirect('homepage')
 #--------------------------------------------
 """   Eshed Sorosky 
-      6/JAN/22
-      return search page """
-def search_view(request):
-   path = "SCE_Proj/template/search.html"
-   if request.method == 'GET':
-      response = render(request,path)
-      response.set_cookie('page',0)
-      return response
-   elif request.method == 'POST':
-      if 'search' in request.POST:
-         pass
-
-
-#--------------------------------------------
-"""   Eshed Sorosky 
       29/Nov/21
       redirect from default dns  """
 def default_redirect(request):
@@ -196,7 +182,6 @@ def default_redirect(request):
 def register(request):
    if request.method == "POST":
       form = RegisterForm(request.POST)
-      #return HttpResponse(form.cleaned_data.get('email'))
       if form.is_valid():
          dbuser = bloguser(
             name = form.cleaned_data.get('name'),
@@ -413,3 +398,46 @@ def confirm_editor(request):
    else:
       return redirect('login')
       
+#--------------------------------------------
+"""   Eshed Sorosky 
+      6/JAN/22
+      return search page """
+def search_view(request):
+   path = "SCE_Proj/template/search.html"
+   if request.method == 'GET':
+      response = render(request,path)
+      response.set_cookie('page',0)
+      return response
+   elif request.method == 'POST':
+      if 'search' in request.POST:
+         form = search_form(request.POST)
+         if form.is_valid():
+            post_list = get_post_list(request,0,"search",form.cleaned_data.get('search_string'))
+            response_dict = create_post_dict(request,post_list)
+            response = render(request,path,response_dict)
+            response.set_cookie('search_string',form.cleaned_data.get('search_string'))
+            response.set_cookie('page',0)
+            return response
+         else:
+            form = search_form()
+            return render(request,path)
+      elif 'next' in request.POST:
+         post_list = get_post_list(request,int(request.COOKIES.get('page'))+1,"search",request.COOKIES.get('search_string'))
+         response_dict = create_post_dict(request,post_list)
+         response = render(request,path,response_dict)
+         page = int(request.COOKIES.get('page')) + 1
+         response.set_cookie('search_string',request.COOKIES.get('search_string'))
+         response.set_cookie('page',page)
+         return response
+      elif 'prev' in request.POST:
+         page = int(request.COOKIES.get('page')) - 1
+         if page<0:
+            page = 0
+         post_list = get_post_list(request,page,"search",request.COOKIES.get('search_string'))
+         response_dict = create_post_dict(request,post_list)
+         response = render(request,path,response_dict)
+         response.set_cookie('page',page)
+         response.set_cookie('search_string',request.COOKIES.get('search_string'))
+         return response
+
+
