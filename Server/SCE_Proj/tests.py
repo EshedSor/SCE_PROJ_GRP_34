@@ -5,13 +5,11 @@ from SCE_Proj.models import Post
 from django.test.client import RequestFactory
 import string
 import random
-import datetime
 
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 # Create your tests here.
-
 
 #unittesting for the login form
 class LoginFormTestCase(TestCase):
@@ -45,7 +43,6 @@ class RegisterFormTestCase(TestCase):
         self.assertTrue(pass_form.is_valid())
         self.assertTrue(exist_form.is_valid())
 
-        
 class SearchFeatureTestCase(TestCase):
     def test_search_feature(self):
         #valid search
