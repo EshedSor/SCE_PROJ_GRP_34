@@ -55,20 +55,17 @@ text-decoration: underline;
     display: flex;
     text-align: center;
 }
-.strip button{
+.buttons{
     font-weight: bold;
     background: rgba(240, 243, 226, 0.062);
     border-radius: 10px;
 }
-.strip nav button{
+.nav buttons{
     color:honeydew;
     text-decoration: none;
     padding: 12px 32px;
 }
-.strip button a{
-    color: black;
-    font-size: 14px;
-}
-.strip button:hover{
+
+.buttons:hover{
     background:burlywood;
 }
