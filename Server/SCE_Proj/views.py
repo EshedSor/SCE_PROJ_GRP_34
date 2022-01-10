@@ -163,13 +163,6 @@ def homepage(request):
          response_dict = create_post_dict(request,post_list)
          path = path.replace("XXX","guest")
       return render(request,path,response_dict)
-   elif request.method == 'POST':
-      form = search_form(request.POST)
-      if form.is_valid():
-        return search_view(request,form)
-      else:
-         form = search_form()
-         return redirect('homepage')
 #--------------------------------------------
 """   Eshed Sorosky 
       29/Nov/21
